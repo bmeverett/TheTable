@@ -2,6 +2,6 @@
 // index.android.js
 
 import React, { AppRegistry } from 'react-native';
-import CodeSharing from './app';
+import TheTable from './app';
 
 AppRegistry.registerComponent('TheTable', () => TheTable);
