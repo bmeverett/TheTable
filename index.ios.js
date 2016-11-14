@@ -14,7 +14,7 @@ var {
 var HomeTab = require('./app/Tabs/HomeTab');
 var VideoTab = require('./app/Tabs/VideoTab');
 var AboutTab = require('./app/Tabs/AboutTab');
-
+//var Tab = require('./app/Tab')
 export default class TheTable extends React.Component {
   constructor(props) {
     super(props);
@@ -23,13 +23,23 @@ export default class TheTable extends React.Component {
       selectedTab: 'homeTab'
     };
   }
-
+  _renderContent = (color: string, pageText: string, num?: number) => {
+      return (
+        <View style={[styles.tabContent, {backgroundColor: color}]}>
+          <Text style={styles.tabText}>{pageText}</Text>
+          <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
+        </View>
+      );
+    };
   render() {
     return (
-      <View style={styles.container}>
+      //<View style={styles.container}>
 
-        <TabBarIOS tintColor="white" barTintColor="darkslateblue">
+        <TabBarIOS  unselectedTintColor="yellow"
+        tintColor="white"
+        barTintColor="darkslateblue">
           <TabBarIOS.Item
+             
               title="Home"
               selected={this.state.selectedTab === 'homeTab'}
               onPress={() => {
@@ -60,7 +70,7 @@ export default class TheTable extends React.Component {
           </TabBarIOS.Item>
 
         </TabBarIOS>
-      </View>
+    //  </View>
     );
   }
 }
@@ -70,7 +80,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  tabContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  tabText: {
+    color: 'white',
+    margin: 50,
+  },
 
 });
 
