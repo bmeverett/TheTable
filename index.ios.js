@@ -8,7 +8,8 @@ var {
   StyleSheet,
   Text,
   View,
-  Platform
+  Platform,
+  NavigatorIOS
 } = ReactNative;
 
 var HomeTab = require('./app/Tabs/HomeTab');
@@ -34,19 +35,25 @@ export default class TheTable extends React.Component {
   render() {
     return (
       //<View style={styles.container}>
-
+     
         <TabBarIOS  unselectedTintColor="yellow"
         tintColor="white"
-        barTintColor="darkslateblue">
+        barTintColor="black">
           <TabBarIOS.Item
-             
+              Icon='./app/images/home.png'
               title="Home"
               selected={this.state.selectedTab === 'homeTab'}
               onPress={() => {
             this.setState({selectedTab: 'homeTab'});
           }}
           >
-            <HomeTab/>
+           <NavigatorIOS initialRoute={{
+          component: HomeTab,
+          title: 'The Table',
+        }} style={{flex: 1}}
+          />
+             
+           
           </TabBarIOS.Item>
 
           <TabBarIOS.Item
@@ -70,6 +77,7 @@ export default class TheTable extends React.Component {
           </TabBarIOS.Item>
 
         </TabBarIOS>
+          
     //  </View>
     );
   }

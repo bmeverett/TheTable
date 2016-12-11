@@ -14,8 +14,11 @@ var {
     Text,
     TouchableHighlight,
     View,
+    WebView,
+    NavigatorIOS
 } = ReactNative;
 
+var EntryDetail = require('../EntryDetail');
 
 export default class HomeTab extends React.Component {
 
@@ -27,48 +30,56 @@ export default class HomeTab extends React.Component {
     }
 
     componentDidMount() {
-        const url = "www.thetableinbetween.org/blog?format=rss"
+        const url = "http://www.thetableinbetween.org/weekly-topic?format=rss"
         Api.fetchRss(url).then((res) => {
             if (res.responseStatus == 200) {
                 var entries = res.responseData.feed.entries;
-                this.setState({feeds: this.state.feeds.concat(entries)})
-                Alert.Alert("test", res.responseDetails);
+                this.setState({ feeds: this.state.feeds.concat(entries) })
+                // Alert.Alert("test", res.responseDetails);
             } else {
-                    Alert.alert(res.responseDetails);
-                
+                Alert.alert(res.responseDetails);
+
             }
         });
     }
 
-     _showEntryDetails(entry:any) {
-    this.props.navigator.push({
-      component: EntryDetail,
-      title: entry.title,
-      passProps: {
-        entry: entry
-      }
-    })
-  }
-     _renderEntries(entry:any) {
-    return (
-      <TouchableHighlight
-        underlayColor="rgba(0,0,0,.1)"
-        onPress={() => { this._showEntryDetails(entry) }} >
-        <View style={styles.wrapper}>
-          <View style={styles.header}>
-            <Text style={styles.title}>{entry.title}</Text>
-            <Text style={styles.description}>{new Date(entry.publishedDate).toDateString()}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-   
+    _showEntryDetails(entry: any) {
+        console.log(entry)
+        this.props.navigator.push({
+            component: EntryDetail,
+            title: entry.title,
+            passProps: {
+                entry: entry
+            }
+
+        })
+        this.props.navigator.pop;
+
+    }
+    _renderEntries(entry: any, i) {
+   //     console.log(entry)
+        return (
+            <TouchableHighlight
+                key={i}
+                underlayColor="rgba(0,0,0,.1)"
+                onPress={() => { this._showEntryDetails(entry) } } >
+                <View style={styles.wrapper}>
+                    <View style={styles.header}>
+                        <Text style={styles.title}>{entry.title}</Text>
+                        <Text style={styles.description}>{new Date(entry.publishedDate).toDateString()}</Text>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        );
+    }
+
     render() {
         return (
+
             <ScrollView style={styles.scrollView}>
-                {this.state.feeds.map((feed) => { return this._renderEntries(feed) })}
+                {this.state.feeds.map((feed, i) => { return this._renderEntries(feed, i) })}
             </ScrollView>
+           
         );
     }
 
@@ -103,6 +114,14 @@ var styles = StyleSheet.create({
         fontSize: 11,
         textAlign: 'right',
         color: "#B4AEAE",
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: 'white',
+    },
+    webView: {
+
     }
 });
 

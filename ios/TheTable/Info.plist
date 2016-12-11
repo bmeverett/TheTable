@@ -42,6 +42,11 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>www.thetableinbetween.org</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>youtube</key>
 			<string></string>
 			<key>localhost</key>
