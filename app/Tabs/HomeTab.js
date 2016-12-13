@@ -44,7 +44,6 @@ export default class HomeTab extends React.Component {
     }
 
     _showEntryDetails(entry: any) {
-        console.log(entry)
         this.props.navigator.push({
             component: EntryDetail,
             title: entry.title,

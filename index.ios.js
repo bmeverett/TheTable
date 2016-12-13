@@ -51,6 +51,8 @@ export default class TheTable extends React.Component {
           component: HomeTab,
           title: 'The Table',
         }} style={{flex: 1}}
+          barTintColor='black'
+          titleTextColor='white'
           />
              
            
