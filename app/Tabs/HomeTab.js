@@ -37,13 +37,14 @@ export default class HomeTab extends React.Component {
                 this.setState({ feeds: this.state.feeds.concat(entries) })
                 // Alert.Alert("test", res.responseDetails);
             } else {
+                console.log(res.responseDetails);
                 Alert.alert(res.responseDetails);
 
             }
         });
     }
 
-    _showEntryDetails(entry: any) {
+    _showEntryDetails(entry) {
         this.props.navigator.push({
             component: EntryDetail,
             title: entry.title,
@@ -55,7 +56,7 @@ export default class HomeTab extends React.Component {
         this.props.navigator.pop;
 
     }
-    _renderEntries(entry: any, i) {
+    _renderEntries(entry, i) {
    //     console.log(entry)
         return (
             <TouchableHighlight

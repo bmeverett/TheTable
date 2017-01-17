@@ -24,63 +24,64 @@ export default class TheTable extends React.Component {
       selectedTab: 'homeTab'
     };
   }
-  _renderContent = (color: string, pageText: string, num?: number) => {
-      return (
-        <View style={[styles.tabContent, {backgroundColor: color}]}>
-          <Text style={styles.tabText}>{pageText}</Text>
-          <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
-        </View>
-      );
-    };
+  _renderContent = (color, pageText, num) => {
+    return (
+      <View style={[styles.tabContent, { backgroundColor: color }]}>
+        <Text style={styles.tabText}>{pageText}</Text>
+        <Text style={styles.tabText}>{num}re-renders of the {pageText}</Text>
+      </View>
+    );
+  };
   render() {
     return (
       //<View style={styles.container}>
-     
-        <TabBarIOS  unselectedTintColor="yellow"
+
+      <TabBarIOS unselectedTintColor="yellow"
         tintColor="white"
         barTintColor="black">
-          <TabBarIOS.Item
-              Icon='./app/images/home.png'
-              title="Home"
-              selected={this.state.selectedTab === 'homeTab'}
-              onPress={() => {
-            this.setState({selectedTab: 'homeTab'});
+        <TabBarIOS.Item
+
+          title="Home"
+          selected={this.state.selectedTab === 'homeTab'}
+          onPress={() => {
+            this.setState({ selectedTab: 'homeTab' });
+          } }
+          >
+          <NavigatorIOS
+            initialRoute={{
+              component: HomeTab,
+              title: 'The Table',
+            }}
+            style={{ flex: 1 }}
+            barTintColor='black'
+            titleTextColor='white'
+            />
+
+        </TabBarIOS.Item>
+
+        <TabBarIOS.Item
+          title="Videos"
+          selected={this.state.selectedTab === 'videoTab'}
+          onPress={() => {
+            this.setState({ selectedTab: 'videoTab' });
           }}
           >
-           <NavigatorIOS initialRoute={{
-          component: HomeTab,
-          title: 'The Table',
-        }} style={{flex: 1}}
-          barTintColor='black'
-          titleTextColor='white'
-          />
-             
-           
-          </TabBarIOS.Item>
+          <VideoTab />
+        </TabBarIOS.Item>
 
-          <TabBarIOS.Item
-              title="Videos"
-              selected={this.state.selectedTab === 'videoTab'}
-              onPress={() => {
-            this.setState({selectedTab: 'videoTab'});
+        <TabBarIOS.Item
+          title="About"
+          selected={this.state.selectedTab === 'aboutTab'}
+          onPress={() => {
+            this.setState({ selectedTab: 'aboutTab' });
           }}
           >
-            <VideoTab/>
-          </TabBarIOS.Item>
+          <AboutTab />
+        </TabBarIOS.Item>
 
-          <TabBarIOS.Item
-              title="About"
-              selected={this.state.selectedTab === 'aboutTab'}
-              onPress={() => {
-            this.setState({selectedTab: 'aboutTab'});
-          }}
-          >
-            <AboutTab/>
-          </TabBarIOS.Item>
+      </TabBarIOS>
 
-        </TabBarIOS>
-          
-    //  </View>
+      //  </View>
     );
   }
 }
