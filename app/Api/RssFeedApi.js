@@ -2,13 +2,8 @@
 
 var Api = {
   fetchRss(url) {
-    if (!(/^http:\/\//.test(url))) {
-      url = "http://" + url;
-    }
-
-    //var GOOGLE_FEED_API_URL = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=-1&q=';
     var url =  (url);
-    return fetch(url).then((res) => res.json());
+    return fetch(url).then((res) => res.json()).catch((e) => console.log(e));
   },
   fetchVideos() {
     const youtube = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUWrtW9MRIYG7K_7t0QC7FPw&key=AIzaSyBMzZ7Zb3WDJucbRX10Q1fGbfFO4xMwO3o";

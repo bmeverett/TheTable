@@ -15,9 +15,8 @@ class EntryDetail extends React.Component {
       <View style={styles.container}>
         <WebView
           automaticallyAdjustContentInsets={true}
-          style={styles.webView}
-          source={{html: this.props.entry.content}}
-          javaScriptEnabledAndroid={true}
+          source={{html: this.props.entry.body}}
+          javaScriptEnabled={true}
           onNavigationStateChange={this.onNavigationStateChange}/>        
       </View>
     );

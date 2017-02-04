@@ -30,18 +30,20 @@ export default class HomeTab extends React.Component {
     }
 
     componentDidMount() {
-        const url = "http://www.thetableinbetween.org/weekly-topic?format=rss"
+        const url = "https://www.thetableinbetween.org/weekly-topic?format=json-pretty"
+        //const url = "https://facebook.github.io/react-native/movies.json"
         Api.fetchRss(url).then((res) => {
-            if (res.responseStatus == 200) {
-                var entries = res.responseData.feed.entries;
+            //if (res.responseStatus == 200) {
+                var entries = res.items;
                 this.setState({ feeds: this.state.feeds.concat(entries) })
                 // Alert.Alert("test", res.responseDetails);
-            } else {
-                console.log(res.responseDetails);
-                Alert.alert(res.responseDetails);
+           // } else {
+            //    console.log(res);
+             //   console.log(res.responseDetails);
+                //Alert.alert(res.responseDetails);
 
-            }
-        });
+           // }
+        }).catch(error => console.log(error));
     }
 
     _showEntryDetails(entry) {
@@ -66,7 +68,7 @@ export default class HomeTab extends React.Component {
                 <View style={styles.wrapper}>
                     <View style={styles.header}>
                         <Text style={styles.title}>{entry.title}</Text>
-                        <Text style={styles.description}>{new Date(entry.publishedDate).toDateString()}</Text>
+                        <Text style={styles.description}>{new Date(entry.publishOn).toDateString()}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -75,7 +77,6 @@ export default class HomeTab extends React.Component {
 
     render() {
         return (
-
             <ScrollView style={styles.scrollView}>
                 {this.state.feeds.map((feed, i) => { return this._renderEntries(feed, i) })}
             </ScrollView>
