@@ -1,29 +1,7 @@
-'use strict';
+import React from 'react';
+import ReactNative, { StyleSheet, View, WebView } from 'react-native';
 
-var React = require('react');
-var ReactNative = require('react-native');
-var {
-  StyleSheet,
-  View,
-  WebView
-} = ReactNative;
-
-class EntryDetail extends React.Component {
-  render() {
-    console.log(this.props.entry)
-    return (
-      <View style={styles.container}>
-        <WebView
-          automaticallyAdjustContentInsets={true}
-          source={{html: this.props.entry.body}}
-          javaScriptEnabled={true}
-          onNavigationStateChange={this.onNavigationStateChange}/>        
-      </View>
-    );
-  }
-};
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -40,4 +18,18 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = EntryDetail;
+export default class EntryDetail extends React.Component {
+  render() {
+    console.log(this.props.entry);
+    return (
+      <View style={styles.container}>
+        <WebView
+          automaticallyAdjustContentInsets
+          source={{ html: this.props.entry.body }}
+          javaScriptEnabled
+          onNavigationStateChange={this.onNavigationStateChange}
+        />
+      </View>
+    );
+  }
+}

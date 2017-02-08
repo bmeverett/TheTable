@@ -1,16 +1,10 @@
-var React = require('react');
-var ReactNative = require('react-native');
-var {
-  Text
-} = ReactNative;
-
+import React from 'react';
+import ReactNative, { Text } from 'react-native';
 
 export default class AboutTab extends React.Component {
-
     render() {
         return <Text> ATestboutTab </Text>;
     }
 
 }
 
-module.exports = AboutTab;

@@ -1,61 +1,43 @@
 // index.ios.js
+import React from 'react';
+import ReactNative, { AppRegistry, TabBarIOS, StyleSheet, Text, View, Platform, NavigatorIOS } from 'react-native';
+import HomeTab from './app/Tabs/HomeTab';
+import VideoTab from './app/Tabs/VideoTab';
+import AboutTab from './app/Tabs/AboutTab';
 
-var React = require('react');
-var ReactNative = require('react-native');
-var {
-  AppRegistry,
-  TabBarIOS,
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  NavigatorIOS
-} = ReactNative;
-
-var HomeTab = require('./app/Tabs/HomeTab');
-var VideoTab = require('./app/Tabs/VideoTab');
-var AboutTab = require('./app/Tabs/AboutTab');
-//var Tab = require('./app/Tab')
 export default class TheTable extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedTab: 'homeTab'
+      selectedTab: 'homeTab',
     };
   }
-  _renderContent = (color, pageText, num) => {
-    return (
-      <View style={[styles.tabContent, { backgroundColor: color }]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}>{num}re-renders of the {pageText}</Text>
-      </View>
-    );
-  };
   render() {
     return (
-      //<View style={styles.container}>
-
-      <TabBarIOS unselectedTintColor="yellow"
+      // <View style={styles.container}>
+      <TabBarIOS
+        unselectedTintColor="yellow"
         tintColor="white"
-        barTintColor="black">
+        barTintColor="black"
+      >
         <TabBarIOS.Item
 
           title="Home"
           selected={this.state.selectedTab === 'homeTab'}
           onPress={() => {
             this.setState({ selectedTab: 'homeTab' });
-          } }
-          >
+          }}
+        >
           <NavigatorIOS
             initialRoute={{
               component: HomeTab,
               title: 'The Table',
             }}
             style={{ flex: 1 }}
-            barTintColor='black'
-            titleTextColor='white'
-            />
+            barTintColor="black"
+            titleTextColor="white"
+          />
 
         </TabBarIOS.Item>
 
@@ -65,7 +47,7 @@ export default class TheTable extends React.Component {
           onPress={() => {
             this.setState({ selectedTab: 'videoTab' });
           }}
-          >
+        >
           <VideoTab />
         </TabBarIOS.Item>
 
@@ -75,7 +57,7 @@ export default class TheTable extends React.Component {
           onPress={() => {
             this.setState({ selectedTab: 'aboutTab' });
           }}
-          >
+        >
           <AboutTab />
         </TabBarIOS.Item>
 
@@ -85,22 +67,5 @@ export default class TheTable extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
-
-});
 
 AppRegistry.registerComponent('TheTable', () => TheTable);
