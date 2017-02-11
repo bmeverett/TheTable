@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		25B62866C1054D7D9F0605FB /* libRCTYouTube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DD761D43204F6E89D49392 /* libRCTYouTube.a */; };
 		2E2F864F1DFCD70B0021F50B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 2E2F864E1DFCD70B0021F50B /* main.jsbundle */; };
+		2ECA85731E4F854D006143EC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA85721E4F854D006143EC /* AVFoundation.framework */; };
 		2ECD2E3D1DD5E2F50080AF7D /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 2ECD2E3C1DD5E2F50080AF7D /* YTPlayerView-iframe-player.html */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -185,6 +186,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		20DD761D43204F6E89D49392 /* libRCTYouTube.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTYouTube.a; sourceTree = "<group>"; };
 		2E2F864E1DFCD70B0021F50B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = TheTable/main.jsbundle; sourceTree = "<group>"; };
+		2ECA85721E4F854D006143EC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2ECD2E3C1DD5E2F50080AF7D /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7E5BC70E2C2A44BDA205BD7E /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTYouTube.xcodeproj; path = "../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ECA85731E4F854D006143EC /* AVFoundation.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -321,6 +324,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2ECA85711E4F854D006143EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ECA85721E4F854D006143EC /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2ECD2E181DD5E28E0080AF7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +384,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TheTableTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				2ECA85711E4F854D006143EC /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

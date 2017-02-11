@@ -11,6 +11,7 @@
 
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation AppDelegate
 
@@ -20,6 +21,11 @@
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 
+  
+  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+  NSError *setCategroyError = nil;
+  [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategroyError];
+  
   /**
   * OPTION 2
   Load from prebundled file on disk. The static bundle is automatically

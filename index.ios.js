@@ -19,7 +19,7 @@ export default class TheTable extends React.Component {
       <TabBarIOS
         unselectedTintColor="yellow"
         tintColor="white"
-        barTintColor="black"
+        barTintColor="gray"
       >
         <TabBarIOS.Item
 
@@ -35,7 +35,7 @@ export default class TheTable extends React.Component {
               title: 'The Table',
             }}
             style={{ flex: 1 }}
-            barTintColor="black"
+            barTintColor="gray"
             titleTextColor="white"
           />
 
