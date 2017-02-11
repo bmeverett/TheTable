@@ -49,7 +49,7 @@ export default class HomeTab extends React.Component {
     };
   }
   componentDidMount() {
-    const url = 'https://www.thetableinbetween.org/weekly-topic?format=json-pretty'
+    const url = 'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
     Api.fetchRss(url).then((res) => {
         // if (res.responseStatus == 200) {
       const entries = res.items;
@@ -84,7 +84,7 @@ export default class HomeTab extends React.Component {
   render() {
     return (
       <ScrollView style={styles.scrollView}>
-        {this.state.feeds.map((feed, i) =>  this._renderEntries(feed, i))}
+        {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
       </ScrollView>
     );
   }

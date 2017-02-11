@@ -2,6 +2,7 @@ import React from 'react';
 import ReactNative, { Image, View, ScrollView, TouchableHighlight, Text, StyleSheet } from 'react-native';
 import YouTube from 'react-native-youtube';
 import Api from '../Api/RssFeedApi';
+import config from '../../Config';
 
 const styles = StyleSheet.create({
 
@@ -63,7 +64,7 @@ export default class VideoTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, flexDirection: 'column', paddingTop: 25 }}>
         <YouTube
           ref="youtubePlayer"
           videoId={this.state.videoId} // "bh9G4n_XwaY"  // The YouTube video ID
@@ -76,10 +77,10 @@ export default class VideoTab extends React.Component {
           onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
           onError={(e) => { this.setState({ error: e.error }); }}
           onProgress={(e) => { this.setState({ currentTime: e.currentTime, duration: e.duration }); }}
-          apiKey="AIzaSyBMzZ7Zb3WDJucbRX10Q1fGbfFO4xMwO3o"
-          style={{ alignSelf: 'stretch', height: 300, backgroundColor: 'black', marginVertical: 50 }}
+          apiKey={config.GOOGLE_API_KEY}
+          style={{ alignSelf: 'stretch', height: 300, backgroundColor: 'black' }}
         />
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView >
           {this.state.videos.map((item, i) => this._loadVideos(item, i))}
         </ScrollView>
 

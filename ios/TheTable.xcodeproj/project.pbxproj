@@ -793,7 +793,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett;
+				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTable;
 				PRODUCT_NAME = TheTable;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -819,7 +819,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett;
+				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTable;
 				PRODUCT_NAME = TheTable;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
