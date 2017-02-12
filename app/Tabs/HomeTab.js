@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableHighlight, View, Image } from 'react-native';
 import { _ } from 'lodash';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
@@ -83,9 +83,16 @@ export default class HomeTab extends React.Component {
   }
   render() {
     return (
-      <ScrollView style={styles.scrollView}>
-        {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <Image source={require('../images/thetable.jpg')} style={{ width: 375, height: 400 }} />
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }} >
+          <ScrollView style={styles.scrollView}>
+            {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
+          </ScrollView>
+        </View>
+      </View>
     );
   }
 }

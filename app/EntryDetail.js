@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 
 export default class EntryDetail extends React.Component {
   render() {
-    console.log(this.props.entry);
+    // console.log(this.props.entry);
     return (
       <View style={styles.container}>
         <WebView

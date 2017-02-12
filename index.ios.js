@@ -29,7 +29,6 @@ export default class TheTable extends React.Component {
             this.setState({ selectedTab: 'homeTab' });
           }}
           icon={require('./app/images/home-7.png')}
-          
           renderAsOriginal
         >
           <NavigatorIOS
@@ -43,7 +42,6 @@ export default class TheTable extends React.Component {
           />
 
         </TabBarIOS.Item>
-    
         <TabBarIOS.Item
           title="Videos"
           selected={this.state.selectedTab === 'videoTab'}
