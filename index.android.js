@@ -27,11 +27,11 @@ export default class TheTable extends React.Component {
       tabbarStyles.push(styles.androidTabbar);
     var tabInput;
     if (page === 'homeTab') {
-      tabInput = <HomeTab/>;
+      tabInput = <HomeTab />;
     } else if (page === 'videosTab') {
-      tabInput = <VideoTab/>;
+      tabInput = <VideoTab />;
     } else {
-      tabInput = <AboutTab/>;
+      tabInput = <AboutTab />;
     }
     return (
       <View style={styles.container}>
