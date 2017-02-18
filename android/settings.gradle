@@ -1,4 +1,4 @@
 rootProject.name = 'TheTable'
 
 include ':RCTYouTube', ':app'
-project(':RCTYouTube').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-youtube/RCTYouTube')
+project(':RCTYouTube').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-youtube/android')
