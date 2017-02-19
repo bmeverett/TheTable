@@ -16,7 +16,7 @@ export default class TheTable extends React.Component {
     super(props);
 
     this.state = {
-      page: 'homeTab'
+      page: 'homeTab',
     };
   }
 

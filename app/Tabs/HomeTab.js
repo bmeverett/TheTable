@@ -6,7 +6,6 @@ import EntryDetail from '../EntryDetail';
 
 const styles = StyleSheet.create({
   scrollView: {
-    flex: 1,
     backgroundColor: '#F5FCFF',
   },
   wrapper: {
@@ -83,10 +82,11 @@ export default class HomeTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <Image source={require('../images/thetable.jpg')} style={{ width: 375, height: 400 }} />
-        </View>
+      <View style={{ flex: 1, paddingTop: 75, backgroundColor: 'gray', alignItems: 'center' }}>
+          <Image 
+            source={require('../images/thetablesmall.png')}
+          />
+       
         <View style={{ flex: 1, flexDirection: 'row' }} >
           <ScrollView style={styles.scrollView}>
             {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}

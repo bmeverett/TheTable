@@ -3,7 +3,7 @@ import React from 'react';
 import ReactNative, { AppRegistry, TabBarIOS, StyleSheet, Text, View, Platform, NavigatorIOS } from 'react-native';
 import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
-import AboutTab from './app/Tabs/AboutTab';
+import AboutTab from './app/Tabs/About/AboutTab';
 
 export default class TheTable extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class TheTable extends React.Component {
           <NavigatorIOS
             initialRoute={{
               component: HomeTab,
-              title: 'The Table',
+              title: 'Home',
             }}
             style={{ flex: 1 }}
             barTintColor="gray"
@@ -54,7 +54,7 @@ export default class TheTable extends React.Component {
           <NavigatorIOS
             initialRoute={{
               component: VideoTab,
-              title: 'The Table',
+              title: 'Vidoes',
             }}
             style={{ flex: 1 }}
             barTintColor="gray"
@@ -76,7 +76,7 @@ export default class TheTable extends React.Component {
           <NavigatorIOS
             initialRoute={{
               component: AboutTab,
-              title: 'The Table',
+              title: 'About',
             }}
             style={{ flex: 1 }}
             barTintColor="gray"
