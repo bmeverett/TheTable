@@ -42,9 +42,13 @@ export default class VideoTab extends React.Component {
     };
   }
   componentDidMount() {
+    console.log('mount');
     Api.fetchVideos().then((res) => {
       this.setState({ videos: this.state.videos.concat(res.items) });
     });
+  }
+  componentWillUnmount() {
+    this.setState({ isPlaying: false });
   }
   _loadVideos(item, i) {
     return (
@@ -78,7 +82,7 @@ export default class VideoTab extends React.Component {
           onError={(e) => { this.setState({ error: e.error }); }}
           onProgress={(e) => { this.setState({ currentTime: e.currentTime, duration: e.duration }); }}
           apiKey={config.GOOGLE_API_KEY}
-          style={{ alignSelf: 'stretch', height: 300, backgroundColor: 'black' }}
+          style={{ alignSelf: 'stretch', height: 200, backgroundColor: 'black' }}
         />
         <ScrollView >
           {this.state.videos.map((item, i) => this._loadVideos(item, i))}
