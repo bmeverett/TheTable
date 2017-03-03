@@ -11,8 +11,10 @@ export default class TheTable extends React.Component {
 
     this.state = {
       selectedTab: 'homeTab',
+      selectedNav: null,
     };
   }
+
   render() {
     return (
       // <View style={styles.container}>
@@ -26,14 +28,16 @@ export default class TheTable extends React.Component {
           title="Home"
           selected={this.state.selectedTab === 'homeTab'}
           onPress={() => {
-            this.refs.navigator.popToTop(0);
+            this.state.selectedNav.popToTop(0);
             this.setState({ selectedTab: 'homeTab' });
           }}
           icon={require('./app/images/home-7.png')}
           renderAsOriginal
         >
           <NavigatorIOS
-            ref='navigator'
+            ref={(nav) => {
+              this.state.selectedNav = nav;
+            }}
             initialRoute={{
               component: HomeTab,
               title: 'Home',
@@ -69,7 +73,7 @@ export default class TheTable extends React.Component {
           title="About"
           selected={this.state.selectedTab === 'aboutTab'}
           onPress={() => {
-            this.refs.navigator.popToTop(0);
+            this.state.selectedNav.popToTop(0);
             this.setState({ selectedTab: 'aboutTab' });
           }}
           icon={require('./app/images/icon-25.png')}
@@ -78,7 +82,9 @@ export default class TheTable extends React.Component {
           
         >
           <NavigatorIOS
-            ref='navigator'
+            ref={(nav) => {
+              this.state.selectedNav = nav;
+            }}
             initialRoute={{
               component: AboutTab,
               title: 'About',
