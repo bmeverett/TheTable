@@ -5,6 +5,8 @@ import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
 import AboutTab from './app/Tabs/About/AboutTab';
 
+const barTintColor = 'gray';
+
 export default class TheTable extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ export default class TheTable extends React.Component {
               title: 'Home',
             }}
             style={{ flex: 1 }}
-            barTintColor="gray"
+            barTintColor={barTintColor}
             titleTextColor="white"
           />
 
@@ -64,7 +66,7 @@ export default class TheTable extends React.Component {
               title: 'Vidoes',
             }}
             style={{ flex: 1 }}
-            barTintColor="gray"
+            barTintColor={barTintColor}
             titleTextColor="white"
           />
         </TabBarIOS.Item>
@@ -90,7 +92,7 @@ export default class TheTable extends React.Component {
               title: 'About',
             }}
             style={{ flex: 1 }}
-            barTintColor="gray"
+            barTintColor={barTintColor}
             titleTextColor="white"
           />
         </TabBarIOS.Item>

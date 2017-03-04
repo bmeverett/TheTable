@@ -6,11 +6,13 @@ import EntryDetail from '../EntryDetail';
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
+    flex: 1,
+    paddingTop: 10,
   },
   wrapper: {
-    paddingTop: 20,
-    paddingBottom: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
@@ -82,20 +84,17 @@ export default class HomeTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, paddingTop: 75, backgroundColor: 'gray', alignItems: 'center' }}>
-          <Image 
-            source={require('../images/thetablesmall.png')}
-          />
-       
-        <View style={{ flex: 1, flexDirection: 'row' }} >
-          <ScrollView style={styles.scrollView}>
-            {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
-          </ScrollView>
-        </View>
+      <View style={{ flex: 1 }} >
+        <ScrollView style={styles.scrollView}>
+          <View style={{ alignItems: 'center' }}>
+            <Image
+              source={require('../images/thetablesmall.png')}
+            />
+          </View>
+          {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
+        </ScrollView>
       </View>
     );
   }
 }
-
-
 
