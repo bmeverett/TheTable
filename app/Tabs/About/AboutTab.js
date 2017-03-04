@@ -6,8 +6,18 @@ import Times from './Times';
 
 const style = StyleSheet.create({
   button: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
+    borderWidth: 10,
+    borderRadius: 15,
+    borderColor: 'gray',
+    backgroundColor: 'gray',
+    padding: 10,
+    marginVertical: 10,
+  },
+
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 export default class AboutTab extends React.Component {
@@ -16,43 +26,48 @@ export default class AboutTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, paddingTop: 63 }} >
-        <View style={{ alignItems: 'center', backgroundColor: 'gray' }} >
-           <Image 
-            source={require('../../images/thetablesmall.png')}
+      <ScrollView style={{ flex: 1, paddingTop: 10 }} >
+        <View style={{ alignItems: 'center' }} >
+          <Image
+             source={require('../../images/thetablesmall.png')}
           />
-       
         </View>
-        <View >
-          <Button
+        <View style={{ alignItems: 'center', padding: 10 }} >
+          <TouchableHighlight
             onPress={() => {
               this.props.navigator.push({
                 component: Who,
-                title: 'Who we Are',
+                title: 'Who We Are',
               });
             }}
-            title="Who we Are"
-          />
-          <Button
+            style={style.button}
+          >
+            <Text style={style.buttonText}> Who We Are </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
               this.props.navigator.push({
                 component: Where,
-                title: 'Where we Meet',
+                title: 'Where We Meet',
               });
             }}
-            title="Where we Meet"
-          />
-          <Button
+            style={style.button}
+          >
+            <Text style={style.buttonText}> Where We Meet </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
               this.props.navigator.push({
                 component: Times,
-                title: 'Times we Meet',
+                title: 'Times We Meet',
               });
             }}
-            title="Times we Meet"
-          />
+            style={style.button}
+          >
+            <Text style={style.buttonText}> Times We Meet </Text>
+          </TouchableHighlight>
         </View>
-      </View>);
+      </ScrollView>);
   }
 
 }
