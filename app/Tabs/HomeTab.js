@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, TouchableHighlight, View, Image } from 'r
 import { _ } from 'lodash';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
+import Highlighter from 'react-native-highlight-words';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#e9e9e9',
+    borderColor: '#E5D767',
   },
   title: {
     paddingTop: 2,
@@ -75,7 +76,13 @@ export default class HomeTab extends React.Component {
       >
         <View style={styles.wrapper}>
           <View style={styles.header}>
-            <Text style={styles.title}>{entry.title}</Text>
+            <Highlighter
+              highlightStyle={{ color: '#E5D767' }}
+              searchWords={['//', '/ /']}
+              textToHighlight={entry.title}
+              style={styles.title}
+            >
+            </Highlighter>
             <Text style={styles.description}>{new Date(entry.publishOn).toDateString()}</Text>
           </View>
         </View>

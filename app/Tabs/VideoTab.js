@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#e9e9e9',
+    borderColor: '#E5D767',
   },
   title: {
     paddingTop: 2,
@@ -42,7 +42,6 @@ export default class VideoTab extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('mount');
     Api.fetchVideos().then((res) => {
       this.setState({ videos: this.state.videos.concat(res.items) });
     });
@@ -51,6 +50,9 @@ export default class VideoTab extends React.Component {
     this.setState({ isPlaying: false });
   }
   _loadVideos(item, i) {
+    if (i === 0) {
+      this.state.videoId = item.snippet.resourceId.videoId;
+    }
     return (
       <TouchableHighlight
         key={i}
@@ -68,26 +70,26 @@ export default class VideoTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: 'column', paddingTop: 25 }}>
-        <YouTube
-          ref="youtubePlayer"
-          videoId={this.state.videoId} // "bh9G4n_XwaY"  // The YouTube video ID
-          play={this.state.isPlaying}           // control playback of video with true/falseyout
-          hidden={false}        // control visiblity of the entire view
-          playsInline={true}    // control whether the video should play inline
-          loop={false}          // control whether the video should loop when ended
-          onReady={() => { this.setState({ isReady: true }); }}
-          onChangeState={(e) => { this.setState({ status: e.state }); }}
-          onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
-          onError={(e) => { this.setState({ error: e.error }); }}
-          onProgress={(e) => { this.setState({ currentTime: e.currentTime, duration: e.duration }); }}
-          apiKey={config.GOOGLE_API_KEY}
-          style={{ alignSelf: 'stretch', height: 200, backgroundColor: 'black' }}
-        />
+      <View style={{ flex: 1, flexDirection: 'column' }}>
+          <YouTube
+            videoId={this.state.videoId} // "bh9G4n_XwaY"  // The YouTube video ID
+            play={this.state.isPlaying}           // control playback of video with true/falseyout
+            hidden={false}        // control visiblity of the entire view
+            playsInline={true}    // control whether the video should play inline
+            loop={false}          // control whether the video should loop when ended
+            onReady={() => { this.setState({ isReady: true }); }}
+            onChangeState={(e) => { this.setState({ status: e.state }); }}
+            onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
+            onError={(e) => { this.setState({ error: e.error }); }}
+            onProgress={(e) => { this.setState({ currentTime: e.currentTime, duration: e.duration }); }}
+            apiKey={config.GOOGLE_API_KEY}
+            style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'black' }}
+          />
+         
         <ScrollView >
           {this.state.videos.map((item, i) => this._loadVideos(item, i))}
         </ScrollView>
-
+       
       </View>
 
     );

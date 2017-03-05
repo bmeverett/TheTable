@@ -6,14 +6,13 @@ import Times from './Times';
 
 const style = StyleSheet.create({
   button: {
-    borderWidth: 10,
+    borderWidth: 2,
     borderRadius: 15,
-    borderColor: 'gray',
-    backgroundColor: 'gray',
+    borderColor: '#E5D767',
+    backgroundColor: '#A6A6A6',
     padding: 10,
     marginVertical: 10,
   },
-
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -21,15 +20,12 @@ const style = StyleSheet.create({
   },
 });
 export default class AboutTab extends React.Component {
-  buttonPressed() {
-    Alert.alert('Pressed');
-  }
   render() {
     return (
       <ScrollView style={{ flex: 1, paddingTop: 10 }} >
         <View style={{ alignItems: 'center' }} >
           <Image
-             source={require('../../images/thetablesmall.png')}
+            source={require('../../images/thetablesmall.png')}
           />
         </View>
         <View style={{ alignItems: 'center', padding: 10 }} >
