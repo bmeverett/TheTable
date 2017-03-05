@@ -16,7 +16,7 @@ Replace the contents of Config.js with your YouTube API key.
 
 
 ```
-export const Config = {
+export default const Config = {
     GOOGLE_API_KEY: KEYHERE
 }
 ```
