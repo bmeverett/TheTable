@@ -9,7 +9,7 @@ import Tabs from 'react-native-tabs';
 var YouTube = require('react-native-youtube');
 var HomeTab = require('./app/Tabs/HomeTab');
 var VideoTab = require('./app/Tabs/VideoTab');
-var AboutTab = require('./app/Tabs/AboutTab');
+var AboutTab = require('./app/Tabs/About/AboutTab');
 
 export default class TheTable extends React.Component {
   constructor(props) {

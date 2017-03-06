@@ -85,11 +85,9 @@ export default class VideoTab extends React.Component {
             apiKey={config.GOOGLE_API_KEY}
             style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'black' }}
           />
-         
         <ScrollView >
           {this.state.videos.map((item, i) => this._loadVideos(item, i))}
         </ScrollView>
-       
       </View>
 
     );

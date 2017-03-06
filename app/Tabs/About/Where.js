@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 
 export default function Where(props) {
   return (
-    <View style={{ flex: 1, paddingTop: 100, paddingHorizontal: 10 }} >
+    <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 10 }} >
       <Text style={{ fontWeight: 'bold' }} >Address </Text>
       <Text>Riverside Community Church - Parkside Campus</Text>
       <Text>{'\n'}800 3rd Street </Text>
