@@ -1169,6 +1169,7 @@
 				2EB899AC1E6E30250096B735 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TheTable" */ = {
 			isa = XCConfigurationList;
