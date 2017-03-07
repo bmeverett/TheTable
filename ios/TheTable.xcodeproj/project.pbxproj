@@ -23,6 +23,8 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2E262AE51E58A60F00C92634 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 2E262AE41E58A60F00C92634 /* YTPlayerView-iframe-player.html */; };
+		2EB899A71E6E30250096B735 /* TheTableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB899A61E6E30250096B735 /* TheTableUITests.swift */; };
+		2EB899C91E6E30AD0096B735 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB899C81E6E30AD0096B735 /* SnapshotHelper.swift */; };
 		2ECA85731E4F854D006143EC /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		2ECD2E3D1DD5E2F50080AF7D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -143,6 +145,13 @@
 			remoteGlobalIDString = 8BDB9BC91B4289AE00EF9FEF;
 			remoteInfo = RCTYouTube;
 		};
+		2EB899A91E6E30250096B735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = TheTable;
+		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
@@ -243,6 +252,10 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		243AC98D1FE64855B09F9FD0 /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTYouTube.xcodeproj; path = "../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; };
 		2E262AE41E58A60F00C92634 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		2EB899A41E6E30250096B735 /* TheTableUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTableUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EB899A61E6E30250096B735 /* TheTableUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheTableUITests.swift; sourceTree = "<group>"; };
+		2EB899A81E6E30250096B735 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EB899C81E6E30AD0096B735 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -275,6 +288,13 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				E11E8280B0244502AD66ECF2 /* libRCTYouTube.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EB899A11E6E30250096B735 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +414,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2EB899A51E6E30250096B735 /* TheTableUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2EB899C81E6E30AD0096B735 /* SnapshotHelper.swift */,
+				2EB899A61E6E30250096B735 /* TheTableUITests.swift */,
+				2EB899A81E6E30250096B735 /* Info.plist */,
+			);
+			path = TheTableUITests;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +477,7 @@
 				13B07FAE1A68108700A75B9A /* TheTable */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TheTableTests */,
+				2EB899A51E6E30250096B735 /* TheTableUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 			);
 			indentWidth = 2;
@@ -458,6 +489,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* TheTable.app */,
 				00E356EE1AD99517003FC87E /* thetableTests.xctest */,
+				2EB899A41E6E30250096B735 /* TheTableUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,12 +533,31 @@
 			productReference = 13B07F961A680F5B00A75B9A /* TheTable.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2EB899A31E6E30250096B735 /* TheTableUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EB899C71E6E30250096B735 /* Build configuration list for PBXNativeTarget "TheTableUITests" */;
+			buildPhases = (
+				2EB899A01E6E30250096B735 /* Sources */,
+				2EB899A11E6E30250096B735 /* Frameworks */,
+				2EB899A21E6E30250096B735 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EB899AA1E6E30250096B735 /* PBXTargetDependency */,
+			);
+			name = TheTableUITests;
+			productName = TheTableUITests;
+			productReference = 2EB899A41E6E30250096B735 /* TheTableUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 820;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
@@ -517,6 +568,12 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KMSJ6H33G8;
+					};
+					2EB899A31E6E30250096B735 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = KMSJ6H33G8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -585,6 +642,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* TheTable */,
 				00E356ED1AD99517003FC87E /* TheTableTests */,
+				2EB899A31E6E30250096B735 /* TheTableUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -793,6 +851,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2EB899A21E6E30250096B735 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -830,6 +895,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2EB899A01E6E30250096B735 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EB899A71E6E30250096B735 /* TheTableUITests.swift in Sources */,
+				2EB899C91E6E30AD0096B735 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -837,6 +911,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* TheTable */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		2EB899AA1E6E30250096B735 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* TheTable */;
+			targetProxy = 2EB899A91E6E30250096B735 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -938,6 +1017,44 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTable;
 				PRODUCT_NAME = TheTable;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2EB899AB1E6E30250096B735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KMSJ6H33G8;
+				INFOPLIST_FILE = TheTableUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTableUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TheTable;
+			};
+			name = Debug;
+		};
+		2EB899AC1E6E30250096B735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KMSJ6H33G8;
+				INFOPLIST_FILE = TheTableUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTableUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TheTable;
 			};
 			name = Release;
 		};
@@ -1044,6 +1161,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2EB899C71E6E30250096B735 /* Build configuration list for PBXNativeTarget "TheTableUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EB899AB1E6E30250096B735 /* Debug */,
+				2EB899AC1E6E30250096B735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TheTable" */ = {
 			isa = XCConfigurationList;
