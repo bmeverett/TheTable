@@ -43,6 +43,7 @@ export default class VideoTab extends React.Component {
   }
   componentDidMount() {
     Api.fetchVideos().then((res) => {
+      this.state.videoId = res.items[0].snippet.resourceId.videoId;
       this.setState({ videos: this.state.videos.concat(res.items) });
     });
   }
@@ -50,9 +51,6 @@ export default class VideoTab extends React.Component {
     this.setState({ isPlaying: false });
   }
   _loadVideos(item, i) {
-    if (i === 0) {
-      this.state.videoId = item.snippet.resourceId.videoId;
-    }
     return (
       <TouchableHighlight
         key={i}
