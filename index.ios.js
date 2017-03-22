@@ -1,22 +1,37 @@
 // index.ios.js
 import React from 'react';
-import ReactNative, { AppRegistry, TabBarIOS, StyleSheet, Text, View, Platform, NavigatorIOS } from 'react-native';
+import ReactNative, { Alert, AppRegistry, TabBarIOS, ActionSheetIOS, Text, View, Linking, NavigatorIOS } from 'react-native';
 import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
 import AboutTab from './app/Tabs/About/AboutTab';
+import Notes from './app/Tabs/Notes';
 
 const barTintColor = 'gray';
 
 export default class TheTable extends React.Component {
   constructor(props) {
     super(props);
-
+    this.onTextChange = this.onTextChange.bind(this);
     this.state = {
       selectedTab: 'homeTab',
       selectedNav: null,
+      text: '',
     };
   }
 
+  onTextChange(e) {
+    this.setState({ text: e });
+  }
+
+  handleNavigationRequest() {
+    Linking.canOpenURL('mailto:info@thetableinbetween.org').then((supported) => {
+      if (supported) {
+        Linking.openURL('mailto:info@thetableinbetween.org');
+      } else {
+        Alert.alert('Error', 'Don\'t know how to open URI: ');
+      }
+    });
+  }
   render() {
     return (
       // <View style={styles.container}>
@@ -60,7 +75,6 @@ export default class TheTable extends React.Component {
           renderAsOriginal
         >
           <NavigatorIOS
-            
             initialRoute={{
               component: VideoTab,
               title: 'Vidoes',
@@ -70,7 +84,29 @@ export default class TheTable extends React.Component {
             titleTextColor="white"
           />
         </TabBarIOS.Item>
-
+        <TabBarIOS.Item
+          title="Notes"
+          selected={this.state.selectedTab === 'notesTab'}
+          onPress={() => {
+            this.setState({ selectedTab: 'notesTab' });
+          }}
+          icon={require('./app/images/note3.png')}
+          selectedIcon={require('./app/images/note3.png')}
+          renderAsOriginal
+        >
+          <NavigatorIOS
+            initialRoute={{
+              component: Notes,
+              title: 'Notes',
+              rightButtonTitle: 'Share',
+              onRightButtonPress: () => this.handleNavigationRequest(),
+              passProps: { onChangeText: this.onTextChange },
+            }}
+            style={{ flex: 1 }}
+            barTintColor={barTintColor}
+            titleTextColor="white"
+          />
+        </TabBarIOS.Item>
         <TabBarIOS.Item
           title="About"
           selected={this.state.selectedTab === 'aboutTab'}
@@ -81,7 +117,7 @@ export default class TheTable extends React.Component {
           icon={require('./app/images/icon-25.png')}
           selectedIcon={require('./app/images/icon-25.png')}
           renderAsOriginal
-          
+
         >
           <NavigatorIOS
             ref={(nav) => {
@@ -90,6 +126,7 @@ export default class TheTable extends React.Component {
             initialRoute={{
               component: AboutTab,
               title: 'About',
+             
             }}
             style={{ flex: 1 }}
             barTintColor={barTintColor}
