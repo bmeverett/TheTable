@@ -3324,7 +3324,7 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
-parse5@^1.5.1:
+parse5@^1.4.1, parse5@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94"
 
@@ -3500,9 +3500,9 @@ react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
 
-"react-native-youtube@git://github.com/bmeverett/react-native-youtube":
+react-native-youtube@bmeverett/react-native-youtube:
   version "0.8.1"
-  resolved "git://github.com/bmeverett/react-native-youtube#c0cf66fdeda5b8e3f9e34ed5b21d178904dc2ff6"
+  resolved "https://codeload.github.com/bmeverett/react-native-youtube/tar.gz/c0cf66fdeda5b8e3f9e34ed5b21d178904dc2ff6"
 
 react-native@^0.41.2:
   version "0.41.2"
@@ -3832,6 +3832,13 @@ run-async@^0.1.0:
 rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
+
+safe-html@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/safe-html/-/safe-html-1.0.0.tgz#0bcc54744399f05f7869ece4a4ab6fdaffc3e58f"
+  dependencies:
+    parse5 "^1.4.1"
+    underscore "^1.8.3"
 
 sane@~1.4.1:
   version "1.4.1"
@@ -4253,7 +4260,7 @@ undefined@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/undefined/-/undefined-0.1.0.tgz#9b706a4b32ad30c20ca4fe65ddcbbbdac32bded0"
 
-underscore@1.8.3:
+underscore@1.8.3, underscore@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 

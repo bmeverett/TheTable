@@ -16,6 +16,7 @@
     "react-native-highlight-words": "^1.0.0",
     "react-native-tabs": "^1.0.9",
     "react-native-youtube": "bmeverett/react-native-youtube",
+    "safe-html": "^1.0.0",
     "undefined": "^0.1.0"
   },
   "jest": {
