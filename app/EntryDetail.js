@@ -2,7 +2,7 @@ import React from 'react';
 import ReactNative, { Image, StyleSheet, View, WebView } from 'react-native';
 
 var safeHtml = require('safe-html');
-var config = {
+const config = {
   allowedTags: ['strong', 'span', 'b', 'p', 'i', 'em'],
   allowedAttributes: {
   },
@@ -37,12 +37,12 @@ export default class EntryDetail extends React.Component {
       <View style={styles.container}>
         {imageSource}
         <View style={{ flex: 1, padding: 0 }}>
-        <WebView
-          automaticallyAdjustContentInsets
-          source={{ html: santitize }}
-          javaScriptEnabled
-          onNavigationStateChange={this.onNavigationStateChange}
-        />
+          <WebView
+            automaticallyAdjustContentInsets
+            source={{ html: santitize }}
+            javaScriptEnabled
+            onNavigationStateChange={this.onNavigationStateChange}
+          />
         </View>
       </View>
      
