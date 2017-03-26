@@ -18,7 +18,7 @@ class TheTableUITests: XCTestCase {
         setupSnapshot(app)
         app.launch()
         // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+        continueAfterFailure = true
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
@@ -38,11 +38,17 @@ class TheTableUITests: XCTestCase {
       let app = XCUIApplication()
       let tabBarsQuery = app.tabBars
       tabBarsQuery.buttons["Home"].tap()
-      snapshot("01HomeScreen")
+      snapshot("01Home")
       tabBarsQuery.buttons["Videos"].tap()
-      snapshot("02VideosScreen")
+      snapshot("02Videos")
+      app.tabBars.buttons["Notes"].tap()
+      snapshot("03Notes")
       app.tabBars.buttons["About"].tap()
-      snapshot("03AboutScreen")
+      snapshot("04About")
+      app.otherElements["  Times We Meet Where We Meet Who We Are  Officially launching on September 6, 2014, The Table is a ministry of Riverside Community Church geared towards young adults. The Table is designed to offer an atmosphere where questions, doubt, and truth can be expressed in relation to one’s spiritual journey toward God. It’s a place of community where people can get invested in each other’s lives and grow in relationship with God in the process.  Whether you find yourself in a classroom, office, or home during the week, non-believing, believing or indifferent, come to The Table to wrestle with life’s biggest questions while joining others of like mind and life stage. Our weekly meeting times will include coffee and discussion, and we will be eating a full meal together once a month. \nOur Mission\n The Mission of The Table is to help young adults find and follow Jesus. "].buttons["Where We Meet"].tap()
+        snapshot("05Where")
+      app.otherElements["  Times We Meet Where We Meet Who We Are  Address  Riverside Community Church - Parkside Campus \n800 3rd Street  \nOakmont, PA 15139  \n\nContact \nEmail:   info@thetableinbetween.org \nPhone:  412.828.2488"].buttons["Times We Meet"].tap()
+      snapshot("06Times")
       
     }
     
