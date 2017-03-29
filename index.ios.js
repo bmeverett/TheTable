@@ -1,6 +1,6 @@
 // index.ios.js
 import React from 'react';
-import ReactNative, { Alert, AppRegistry, TabBarIOS, ActionSheetIOS, Text, View, Linking, NavigatorIOS } from 'react-native';
+import ReactNative, { Alert, AppRegistry, TabBarIOS, Linking, NavigatorIOS, Keyboard } from 'react-native';
 import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
 import AboutTab from './app/Tabs/About/AboutTab';
@@ -12,10 +12,12 @@ export default class TheTable extends React.Component {
   constructor(props) {
     super(props);
     this.onTextChange = this.onTextChange.bind(this);
+    this.onSubjectChange = this.onSubjectChange.bind(this);
     this.state = {
       selectedTab: 'homeTab',
       selectedNav: null,
       text: '',
+      subject: '',
     };
   }
 
@@ -23,14 +25,19 @@ export default class TheTable extends React.Component {
     this.setState({ text: e });
   }
 
+  onSubjectChange(e) {
+    this.setState({ subject: e });
+  }
+
   handleNavigationRequest() {
-    Linking.canOpenURL('mailto:info@thetableinbetween.org').then((supported) => {
+    Linking.canOpenURL(`mailto:?subject=${this.state.subject}&body=${this.state.text}`).then((supported) => {
       if (supported) {
-        Linking.openURL('mailto:info@thetableinbetween.org');
+        Linking.openURL(`mailto:?subject=${this.state.subject}&body=${this.state.text}`);
       } else {
         Alert.alert('Error', 'Don\'t know how to open URI: ');
       }
     });
+    Keyboard.dismiss;
   }
   render() {
     return (
@@ -100,7 +107,7 @@ export default class TheTable extends React.Component {
               title: 'Notes',
               rightButtonTitle: 'Share',
               onRightButtonPress: () => this.handleNavigationRequest(),
-              passProps: { onChangeText: this.onTextChange },
+              passProps: { onChangeText: this.onTextChange, onSubjectChange: this.onSubjectChange },
             }}
             style={{ flex: 1 }}
             barTintColor={barTintColor}
@@ -126,7 +133,6 @@ export default class TheTable extends React.Component {
             initialRoute={{
               component: AboutTab,
               title: 'About',
-             
             }}
             style={{ flex: 1 }}
             barTintColor={barTintColor}

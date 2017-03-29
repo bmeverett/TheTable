@@ -25,7 +25,6 @@ export default class EntryDetail extends React.Component {
     let santitize = safeHtml(this.props.entry.body, config);
     const test = santitize.replace('&lt;', '<').replace('&quot;', '"').replace('/&gt;', '>').replace('&quot; ', '"');
     santitize = safeHtml(test, config).trim();
-    console.log(santitize);
     let imageSource;
     if (img.length > 1) {
       img[1].split('=');

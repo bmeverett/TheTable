@@ -36,7 +36,7 @@ export default class VideoTab extends React.Component {
       status: null,
       quality: null,
       error: null,
-      isPlaying: true,
+      isPlaying: false,
       videoId: 'Q0TohHXWtis',
       videos: [],
     };
