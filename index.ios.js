@@ -5,6 +5,8 @@ import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
 import AboutTab from './app/Tabs/About/AboutTab';
 import Notes from './app/Tabs/Notes';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Icon2 from 'react-native-vector-icons/SimpleLineIcons';
 
 const barTintColor = 'gray';
 
@@ -47,15 +49,15 @@ export default class TheTable extends React.Component {
         tintColor="white"
         barTintColor="gray"
       >
-        <TabBarIOS.Item
-
+        <Icon.TabBarItemIOS
           title="Home"
+          iconName="ios-home-outline"
+          selectedIconName="ios-home-outline"
           selected={this.state.selectedTab === 'homeTab'}
           onPress={() => {
             this.state.selectedNav.popToTop(0);
             this.setState({ selectedTab: 'homeTab' });
           }}
-          icon={require('./app/images/home-7.png')}
           renderAsOriginal
         >
           <NavigatorIOS
@@ -71,14 +73,15 @@ export default class TheTable extends React.Component {
             titleTextColor="white"
           />
 
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+        </Icon.TabBarItemIOS>
+        <Icon2.TabBarItemIOS
           title="Videos"
+          iconName="social-youtube"
+          selectedIconName="social-youtube"
           selected={this.state.selectedTab === 'videoTab'}
           onPress={() => {
             this.setState({ selectedTab: 'videoTab' });
           }}
-          icon={require('./app/images/video-player-7.png')}
           renderAsOriginal
         >
           <NavigatorIOS
@@ -90,15 +93,17 @@ export default class TheTable extends React.Component {
             barTintColor={barTintColor}
             titleTextColor="white"
           />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+        </Icon2.TabBarItemIOS>
+        <Icon.TabBarItemIOS
           title="Notes"
-          selected={this.state.selectedTab === 'notesTab'}
+          iconName="ios-clipboard-outline"
+          selectedIconName="ios-clipboard-outline"
+          selected={this.state.selectedTab === 'Notes'}
           onPress={() => {
-            this.setState({ selectedTab: 'notesTab' });
+            this.setState({
+              selectedTab: 'Notes',
+            });
           }}
-          icon={require('./app/images/note3.png')}
-          selectedIcon={require('./app/images/note3.png')}
           renderAsOriginal
         >
           <NavigatorIOS
@@ -113,8 +118,21 @@ export default class TheTable extends React.Component {
             barTintColor={barTintColor}
             titleTextColor="white"
           />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
+          title="About"
+          iconName="ios-information-circle-outline"
+          selectedIconName="ios-information-circle-outline"
+          selected={this.state.selectedTab === 'aboutTab'}
+          onPress={() => {
+            this.state.selectedNav.popToTop(0);
+            this.setState({
+              selectedTab: 'aboutTab',
+            });
+          }}
+          renderAsOriginal
+        >
+        {/*<TabBarIOS.Item
           title="About"
           selected={this.state.selectedTab === 'aboutTab'}
           onPress={() => {
@@ -125,7 +143,7 @@ export default class TheTable extends React.Component {
           selectedIcon={require('./app/images/icon-25.png')}
           renderAsOriginal
 
-        >
+        >*/}
           <NavigatorIOS
             ref={(nav) => {
               this.state.selectedNav = nav;
@@ -138,7 +156,7 @@ export default class TheTable extends React.Component {
             barTintColor={barTintColor}
             titleTextColor="white"
           />
-        </TabBarIOS.Item>
+        </Icon.TabBarItemIOS>
 
       </TabBarIOS>
 
