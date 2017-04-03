@@ -132,18 +132,6 @@ export default class TheTable extends React.Component {
           }}
           renderAsOriginal
         >
-        {/*<TabBarIOS.Item
-          title="About"
-          selected={this.state.selectedTab === 'aboutTab'}
-          onPress={() => {
-            this.state.selectedNav.popToTop(0);
-            this.setState({ selectedTab: 'aboutTab' });
-          }}
-          icon={require('./app/images/icon-25.png')}
-          selectedIcon={require('./app/images/icon-25.png')}
-          renderAsOriginal
-
-        >*/}
           <NavigatorIOS
             ref={(nav) => {
               this.state.selectedNav = nav;

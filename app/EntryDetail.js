@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative, { Image, StyleSheet, View, WebView } from 'react-native';
+import parseImage from './ParseImage';
 
 var safeHtml = require('safe-html');
 const config = {
@@ -21,17 +22,17 @@ const styles = StyleSheet.create({
 export default class EntryDetail extends React.Component {
   render() {
     // console.log(this.props.entry);
-    const img = this.props.entry.body.split('<img');
-    let santitize = safeHtml(this.props.entry.body, config);
-    const test = santitize.replace('&lt;', '<').replace('&quot;', '"').replace('/&gt;', '>').replace('&quot; ', '"');
-    santitize = safeHtml(test, config).trim();
-    let imageSource;
-    if (img.length > 1) {
-      img[1].split('=');
-      const index = img[1].indexOf('>');
-      const realHtml = img[1].substring(0, index - 1).split('"')[1];
-      imageSource = <Image style={{ flex: 1, alignSelf: 'auto' }} resizeMode= 'contain' source={{ uri: realHtml }} />;
-    }
+    // const img = this.props.entry.body.split('<img');
+    const santitize = safeHtml(this.props.entry.body, config);
+    // const test = santitize.replace('&lt;', '<').replace('&quot;', '"').replace('/&gt;', '>').replace('&quot; ', '"');
+    // santitize = safeHtml(test, config).trim();
+    const imageSource = parseImage(this.props.entry.body);
+    // if (img.length > 1) {
+    //   img[1].split('=');
+    //   const index = img[1].indexOf('>');
+    //   const realHtml = img[1].substring(0, index - 1).split('"')[1];
+    //   imageSource = <Image style={{ flex: 1, alignSelf: 'auto' }} resizeMode='contain' source={{ uri: realHtml }} />;
+    // }
     return (
       <View style={styles.container}>
         {imageSource}
