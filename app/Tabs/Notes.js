@@ -36,11 +36,11 @@ export default class Notes extends React.Component {
     return (
       <ScrollView ref='scrollView' contentContainerStyle={{ flex: 1 }} >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={{ flex: 1, paddingTop: 20 }} >
+          <View style={{ flex: 1 }} >
             {this.state.imgSource}
             <TextInput
               placeholder="Subject"
-              style={{ margin: 5, height: 40, fontSize: 14 }}
+              style={{ margin: 5, height: 70, fontSize: 14 }}
               onChangeText={this.props.onSubjectChange}
               value={this.props.subject}
               editable

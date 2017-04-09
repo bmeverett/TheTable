@@ -15,7 +15,7 @@ export default class TheTable extends React.Component {
     super(props);
     this.onTextChange = this.onTextChange.bind(this);
     this.onSubjectChange = this.onSubjectChange.bind(this);
-    this.handleAppStateChange = this.handleAppStateChange.bind(this);
+   // this.handleAppStateChange = this.handleAppStateChange.bind(this);
     this.state = {
       selectedTab: 'homeTab',
       selectedNav: null,
@@ -25,9 +25,8 @@ export default class TheTable extends React.Component {
     };
   }
   componentDidMount() {
-    AppState.addEventListener('change', this.handleAppStateChange);
+    // AppState.addEventListener('change', this.handleAppStateChange);
   }
-  
   onTextChange(e) {
     this.setState({ text: e });
   }
@@ -47,12 +46,12 @@ export default class TheTable extends React.Component {
     Keyboard.dismiss;
   }
 
-  handleAppStateChange(state) {
-    if (state === 'active') {
-      console.log(state);
-      // this.setState({ reload: true });
-    }
-  }
+  // handleAppStateChange(state) {
+  //   if (state === 'active') {
+  //     console.log(state);
+  //     // this.setState({ reload: true });
+  //   }
+  // }
   render() {
     return (
       <TabBarIOS
@@ -159,8 +158,6 @@ export default class TheTable extends React.Component {
         </Icon.TabBarItemIOS>
 
       </TabBarIOS>
-
-      //  </View>
     );
   }
 }
