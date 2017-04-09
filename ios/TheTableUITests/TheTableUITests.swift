@@ -33,22 +33,19 @@ class TheTableUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-      XCUIDevice.shared().orientation = .portrait
       
       let app = XCUIApplication()
-      let tabBarsQuery = app.tabBars
-      tabBarsQuery.buttons["Home"].tap()
+      XCUIDevice.shared().orientation = .portrait
       snapshot("01Home")
-      tabBarsQuery.buttons["Videos"].tap()
-      snapshot("02Videos")
+      app.otherElements["     3P // Part 1  Tue Apr 04 2017    My Side of Iron // Part 3 Tue Mar 21 2017    My Side of Iron // Part 2 Tue Mar 14 2017    My Side of Iron // Part 1 Tue Mar 07 2017    Family Meal  Tue Feb 28 2017    You Can't Teach Hunger / / Part 3  Tue Feb 21 2017    You Can't Teach Hunger / / Part 2  Mon Feb 13 2017     Tue Feb 07 2017    Family Meal  Tue Jan 31 2017    The New Now // Part 4 Tue Jan 24 2017    The New Now // Part 2 Tue Jan 10 2017    The New Now // Part 1 Tue Jan 03 2017    The Table 12/13/16 Tue Dec 13 2016    Person is Personal // Week 2  Tue Dec 13 2016     Tue Dec 06 2016     Tue Nov 29 2016    Where is the love? / / Part 3 Tue Nov 15 2016    Where is the love? / / Part 2  Tue Nov 08 2016     Tue Nov 01 2016     Tue Oct 25 2016"].otherElements["   3P // Part 1  Tue Apr 04 2017"].tap()
+      snapshot("02Detail")
+      app.tabBars.buttons["Videos"].tap()
+      snapshot("03Videos")
       app.tabBars.buttons["Notes"].tap()
-      snapshot("03Notes")
+      snapshot("04Notes")
       app.tabBars.buttons["About"].tap()
-      snapshot("04About")
-      app.otherElements["  Times We Meet Where We Meet Who We Are  Officially launching on September 6, 2014, The Table is a ministry of Riverside Community Church geared towards young adults. The Table is designed to offer an atmosphere where questions, doubt, and truth can be expressed in relation to one’s spiritual journey toward God. It’s a place of community where people can get invested in each other’s lives and grow in relationship with God in the process.  Whether you find yourself in a classroom, office, or home during the week, non-believing, believing or indifferent, come to The Table to wrestle with life’s biggest questions while joining others of like mind and life stage. Our weekly meeting times will include coffee and discussion, and we will be eating a full meal together once a month. \nOur Mission\n The Mission of The Table is to help young adults find and follow Jesus. "].buttons["Where We Meet"].tap()
-        snapshot("05Where")
-      app.otherElements["  Times We Meet Where We Meet Who We Are  Address  Riverside Community Church - Parkside Campus \n800 3rd Street  \nOakmont, PA 15139  \n\nContact \nEmail:   info@thetableinbetween.org \nPhone:  412.828.2488"].buttons["Times We Meet"].tap()
-      snapshot("06Times")
+      snapshot("05About")
+      
       
     }
     
