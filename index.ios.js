@@ -54,7 +54,6 @@ export default class TheTable extends React.Component {
     }
   }
   render() {
-    console.log(this.state.reload);
     return (
       <TabBarIOS
         unselectedTintColor="black"
