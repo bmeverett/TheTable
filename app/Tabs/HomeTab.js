@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableHighlight, View, Image } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
 import { _ } from 'lodash';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
@@ -48,13 +48,27 @@ export default class HomeTab extends React.Component {
     super(props);
     this.state = {
       feeds: [],
+      refreshing: false,
     };
   }
   componentDidMount() {
+    this.loadEntries();
+  }
+  componentWillReceiveProps() {
+    this.loadEntries();
+  }
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.loadEntries();
+    this.setState({ refreshing: false });
+  }
+  loadEntries() {
     const url = 'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
     Api.fetchRss(url).then((res) => {
         // if (res.responseStatus == 200) {
       const entries = res.items;
+      this.setState({ feeds: [] });
       this.setState({ feeds: this.state.feeds.concat(entries) });
     }).catch(error => console.log(error));
   }
@@ -92,7 +106,15 @@ export default class HomeTab extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }} >
-        <ScrollView style={styles.scrollView}>
+        <ScrollView
+          style={styles.scrollView}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
           <View style={{ alignItems: 'center' }}>
             <Image
               source={require('../images/thetablesmall.png')}

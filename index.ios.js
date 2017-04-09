@@ -1,6 +1,6 @@
 // index.ios.js
 import React from 'react';
-import ReactNative, { Alert, AppRegistry, TabBarIOS, Linking, NavigatorIOS, Keyboard } from 'react-native';
+import ReactNative, { Alert, AppState, AppRegistry, TabBarIOS, Linking, NavigatorIOS, Keyboard } from 'react-native';
 import HomeTab from './app/Tabs/HomeTab';
 import VideoTab from './app/Tabs/VideoTab';
 import AboutTab from './app/Tabs/About/AboutTab';
@@ -15,14 +15,19 @@ export default class TheTable extends React.Component {
     super(props);
     this.onTextChange = this.onTextChange.bind(this);
     this.onSubjectChange = this.onSubjectChange.bind(this);
+    this.handleAppStateChange = this.handleAppStateChange.bind(this);
     this.state = {
       selectedTab: 'homeTab',
       selectedNav: null,
       text: '',
       subject: '',
+      reload: false,
     };
   }
-
+  componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange);
+  }
+  
   onTextChange(e) {
     this.setState({ text: e });
   }
@@ -41,9 +46,16 @@ export default class TheTable extends React.Component {
     });
     Keyboard.dismiss;
   }
+
+  handleAppStateChange(state) {
+    if (state === 'active') {
+      console.log(state);
+      // this.setState({ reload: true });
+    }
+  }
   render() {
+    console.log(this.state.reload);
     return (
-      // <View style={styles.container}>
       <TabBarIOS
         unselectedTintColor="black"
         tintColor="white"
@@ -67,6 +79,7 @@ export default class TheTable extends React.Component {
             initialRoute={{
               component: HomeTab,
               title: 'Home',
+              passProps: { reload: this.state.reload },
             }}
             style={{ flex: 1 }}
             barTintColor={barTintColor}

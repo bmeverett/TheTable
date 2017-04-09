@@ -20,7 +20,6 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    console.log(this.state.imgSource);
     return (
        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
          <View style={{ flex: 1, paddingTop: 60 }} >
