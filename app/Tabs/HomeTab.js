@@ -3,6 +3,7 @@ import { ScrollView, Button, StyleSheet, Text, TouchableHighlight, View, Image, 
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
 import Highlighter from 'react-native-highlight-words';
+import LinearGradient from 'react-native-linear-gradient';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -39,6 +40,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
+  },
+  gradient: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 35,
+    marginHorizontal: 50,
+  },
+  text: {
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+    fontSize: 20,
   },
 });
 
@@ -116,25 +130,28 @@ export default class HomeTab extends React.Component {
             style={{ flex: 1 }}
           />
         </View>
-        <View style={{ borderColor: 'black', borderRadius: 100, borderWidth: 1, paddingHorizontal: 20 }} >
-        <Button
-          style={{ flex: 1 }}
-          title='Tonight'
-          onPress={this.buttonPress}
-        />
-        </View>
-        <ScrollView
-          style={styles.scrollView}
-          automaticallyAdjustContentInsets={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
-        >
+        <View style={{ flex: 1, paddingTop: 10 }}>
+        <LinearGradient 
+            colors={['#E5D767', '#E5D000']}
+            style={styles.gradient}
+          >
+          <Text style={styles.text}> Tonight </Text>
+           </LinearGradient>
+          
+         
+          <ScrollView
+            style={styles.scrollView}
+            automaticallyAdjustContentInsets={false}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh.bind(this)}
+              />
+            }
+          >
           {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
         </ScrollView>
+        </View>
       </View>
     );
   }
