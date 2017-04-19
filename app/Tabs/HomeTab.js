@@ -1,13 +1,11 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
-import { _ } from 'lodash';
+import { ScrollView, Button, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
 import Highlighter from 'react-native-highlight-words';
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'white',
     flex: 1,
     paddingTop: 10,
   },
@@ -18,6 +16,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderBottomWidth: 1,
     borderColor: '#E5D767',
+    flex: 1,
   },
   title: {
     paddingTop: 2,
@@ -49,6 +48,7 @@ export default class HomeTab extends React.Component {
     this.state = {
       feeds: [],
       refreshing: false,
+      imageSrc: '',
     };
   }
   componentDidMount() {
@@ -68,8 +68,10 @@ export default class HomeTab extends React.Component {
     Api.fetchRss(url).then((res) => {
         // if (res.responseStatus == 200) {
       const entries = res.items;
+      const filterEnts = entries.filter(x => new Date(x.publishOn).getMonth() === new Date().getMonth());
+      // clear the entries to be able to reload them
       this.setState({ feeds: [] });
-      this.setState({ feeds: this.state.feeds.concat(entries) });
+      this.setState({ feeds: this.state.feeds.concat(filterEnts) });
     }).catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
@@ -95,19 +97,35 @@ export default class HomeTab extends React.Component {
               searchWords={['//', '/ /']}
               textToHighlight={entry.title}
               style={styles.title}
-            >
-            </Highlighter>
+            />
             <Text style={styles.description}>{new Date(entry.publishOn).toDateString()}</Text>
           </View>
         </View>
       </TouchableHighlight>
     );
   }
+  buttonPress() {
+    console.log('test');
+  }
   render() {
     return (
       <View style={{ flex: 1 }} >
+        <View style={{ alignItems: 'center', flex: 1, paddingTop: 50 }}>
+          <Image
+            source={require('../images/thetable425.png')}
+            style={{ flex: 1 }}
+          />
+        </View>
+        <View style={{ borderColor: 'black', borderRadius: 100, borderWidth: 1, paddingHorizontal: 20 }} >
+        <Button
+          style={{ flex: 1 }}
+          title='Tonight'
+          onPress={this.buttonPress}
+        />
+        </View>
         <ScrollView
           style={styles.scrollView}
+          automaticallyAdjustContentInsets={false}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -115,11 +133,6 @@ export default class HomeTab extends React.Component {
             />
           }
         >
-          <View style={{ alignItems: 'center' }}>
-            <Image
-              source={require('../images/thetablesmall.png')}
-            />
-          </View>
           {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
         </ScrollView>
       </View>
