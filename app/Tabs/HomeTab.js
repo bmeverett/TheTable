@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Button, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
+import { Alert, ScrollView, Button, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
 import Highlighter from 'react-native-highlight-words';
@@ -63,7 +63,9 @@ export default class HomeTab extends React.Component {
       feeds: [],
       refreshing: false,
       imageSrc: '',
+      tonight: null,
     };
+    this.buttonPress = this.buttonPress.bind(this);
   }
   componentDidMount() {
     this.loadEntries();
@@ -97,7 +99,10 @@ export default class HomeTab extends React.Component {
     this.props.navigator.pop;
   }
   _renderEntries(entry, i) {
-   //     console.log(entry)
+    if (i === 0) {
+     // this.state.tonight = entry;
+      return null;
+    }
     return (
       <TouchableHighlight
         key={i}
@@ -119,7 +124,11 @@ export default class HomeTab extends React.Component {
     );
   }
   buttonPress() {
-    console.log('test');
+    if (this.state.tonight) {
+      this._showEntryDetails(this.state.tonight);
+    } else {
+      Alert.alert('No items are loaded');
+    }
   }
   render() {
     return (
@@ -131,14 +140,15 @@ export default class HomeTab extends React.Component {
           />
         </View>
         <View style={{ flex: 1, paddingTop: 10 }}>
-        <LinearGradient 
+          <LinearGradient
             colors={['#E5D767', '#E5D000']}
             style={styles.gradient}
           >
-          <Text style={styles.text}> Tonight </Text>
-           </LinearGradient>
-          
-         
+            <TouchableHighlight onPress={this.buttonPress} underlayColor="transparent">
+              <Text style={styles.text}> TONIGHT </Text>
+            </TouchableHighlight>
+          </LinearGradient>
+
           <ScrollView
             style={styles.scrollView}
             automaticallyAdjustContentInsets={false}
@@ -149,8 +159,8 @@ export default class HomeTab extends React.Component {
               />
             }
           >
-          {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
-        </ScrollView>
+            {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
+          </ScrollView>
         </View>
       </View>
     );
