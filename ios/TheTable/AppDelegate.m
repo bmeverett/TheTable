@@ -14,7 +14,23 @@
 @import UserNotifications;
 @import Firebase;
 
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@import UserNotifications;
+#endif
+
+@import Firebase;
+
+// Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
+// running iOS 10 and above. Implement FIRMessagingDelegate to receive data message via FCM for
+// devices running iOS 10 and above.
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
+@end
+#endif
+
 @implementation AppDelegate
+
+NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -51,7 +67,6 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  [FIRApp configure];
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
     UIUserNotificationType allNotificationTypes =
     (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
@@ -71,15 +86,74 @@
     }];
     
     // For iOS 10 data message (sent via FCM)
-  //  [FIRMessaging messaging].remoteMessageDelegate = self;
+    [FIRMessaging messaging].remoteMessageDelegate = self;
 #endif
   }
   
   [[UIApplication sharedApplication] registerForRemoteNotifications];
-  NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+ // NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+  //NSLog(@"InstanceID token: %@", refreshedToken);
+  
+  
+  [FIRApp configure];
+  // Add observer for InstanceID token refresh callback.
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+                                               name:kFIRInstanceIDTokenRefreshNotification object:nil];
   return YES;
 }
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+  
+ }
 
+
+// [START ios_10_message_handling]
+// Receive displayed notifications for iOS 10 devices.
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+// Handle incoming notification messages while app is in the foreground.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+  // Print message ID.
+  NSDictionary *userInfo = notification.request.content.userInfo;
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+  
+  // Print full message.
+  NSLog(@"%@", userInfo);
+  
+  // Change this to your preferred presentation option
+  completionHandler(UNNotificationPresentationOptionNone);
+}
+
+// Handle notification messages after display notification is tapped by the user.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void (^)())completionHandler {
+  NSDictionary *userInfo = response.notification.request.content.userInfo;
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+  
+  // Print full message.
+  NSLog(@"%@", userInfo);
+  
+  completionHandler();
+}
+#endif
+// [END ios_10_message_handling]
+
+// [START ios_10_data_message_handling]
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+// Receive data message on iOS 10 devices while app is in the foreground.
+- (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+  // Print full message
+  NSLog(@"%@", remoteMessage.appData);
+}
+#endif
+// [END ios_10_data_message_handling]
+
+// [START refresh_token]
 - (void)tokenRefreshNotification:(NSNotification *)notification {
   // Note that this callback will be fired everytime a new token is generated, including the first
   // time. So if you need to retrieve the token as soon as it is available this is where that
@@ -89,7 +163,28 @@
   
   // Connect to FCM since connection may have failed when attempted before having a token.
   [self connectToFcm];
-   
+  
   // TODO: If necessary send token to application server.
 }
+// [END refresh_token]
+
+// [START connect_to_fcm]
+- (void)connectToFcm {
+  // Won't connect since there is no token
+  if (![[FIRInstanceID instanceID] token]) {
+    return;
+  }
+  
+  // Disconnect previous FCM connection if it exists.
+  [[FIRMessaging messaging] disconnect];
+  
+  [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Unable to connect to FCM. %@", error);
+    } else {
+      NSLog(@"Connected to FCM.");
+    }
+  }];
+}
+// [END connect_to_fcm]
 @end
