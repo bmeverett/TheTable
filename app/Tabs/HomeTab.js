@@ -100,7 +100,7 @@ export default class HomeTab extends React.Component {
   }
   _renderEntries(entry, i) {
     if (i === 0) {
-     // this.state.tonight = entry;
+      this.state.tonight = entry;
       return null;
     }
     return (
