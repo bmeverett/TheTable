@@ -101,7 +101,10 @@ export default class HomeTab extends React.Component {
   _renderEntries(entry, i) {
     if (i === 0) {
       this.state.tonight = entry;
-      return null;
+      const dte = new Date(entry.publishOn);
+      if (dte.getDate() === new Date().getDate()) {
+        return null;
+      }
     }
     return (
       <TouchableHighlight
