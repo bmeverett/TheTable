@@ -122,7 +122,9 @@ export default class TheTable extends React.Component {
               component: Notes,
               title: 'Notes',
               rightButtonTitle: 'Share',
+              leftButtonTitle: 'Done',
               onRightButtonPress: () => this.handleNavigationRequest(),
+              onLeftButtonPress: () => Keyboard.dismiss(),
               passProps: { onChangeText: this.onTextChange, onSubjectChange: this.onSubjectChange },
             }}
             style={{ flex: 1 }}
