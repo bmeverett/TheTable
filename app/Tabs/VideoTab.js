@@ -84,7 +84,7 @@ export default class VideoTab extends React.Component {
           videoId={this.state.videoId} // "bh9G4n_XwaY"  // The YouTube video ID
           play={this.state.isPlaying}           // control playback of video with true/falseyout
           hidden={false}        // control visiblity of the entire view
-          playsInline   // control whether the video should play inline
+          playsInline={false}   // control whether the video should play inline
           loop={false}          // control whether the video should loop when ended
           onReady={() => { this.setState({ isReady: true }); }}
           onChangeState={(e) => { this.setState({ status: e.state }); }}
