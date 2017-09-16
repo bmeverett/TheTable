@@ -18,7 +18,7 @@ export default function parseImage(body) {
     img[1].split('=');
     const index = img[1].indexOf('>');
     const realHtml = img[1].substring(0, index - 1).split('"')[1];
-    imageSource = <Image style={{ flex: 1, alignSelf: 'auto' }} resizeMode='contain' source={{ uri: realHtml }} />;
+    imageSource = <Image style={{ flex: 1, alignSelf: 'auto' }} resizeMode='cover' source={{ uri: realHtml }} />;
   }
   return imageSource;
 }

@@ -157,6 +157,34 @@
 			remoteGlobalIDString = 8BDB9BC91B4289AE00EF9FEF;
 			remoteInfo = RCTYouTube;
 		};
+		2EB649E71F68B70F00D8C2A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
+			remoteInfo = "third-party";
+		};
+		2EB649E91F68B70F00D8C2A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D3C1EBD27B6005632C8;
+			remoteInfo = "third-party-tvOS";
+		};
+		2EB649EB1F68B70F00D8C2A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
+			remoteInfo = "double-conversion";
+		};
+		2EB649ED1F68B70F00D8C2A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
+			remoteInfo = "double-conversion-tvOS";
+		};
 		2EB899A91E6E30250096B735 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -444,6 +472,10 @@
 				2E262AB61E589C6D00C92634 /* libcxxreact.a */,
 				2E262AB81E589C6D00C92634 /* libjschelpers.a */,
 				2E262ABA1E589C6D00C92634 /* libjschelpers.a */,
+				2EB649E81F68B70F00D8C2A4 /* libthird-party.a */,
+				2EB649EA1F68B70F00D8C2A4 /* libthird-party.a */,
+				2EB649EC1F68B70F00D8C2A4 /* libdouble-conversion.a */,
+				2EB649EE1F68B70F00D8C2A4 /* libdouble-conversion.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +486,16 @@
 				2E262ADB1E58A3D600C92634 /* libRCTYouTube.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2EB649C71F68B70E00D8C2A4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				EACA87B935F54D31A9CA22FB /* libRCTYouTube.a */,
+				3B068A3E405E4A258EBC6D1B /* libRNVectorIcons.a */,
+				D88500619B16423BA97D694A /* libBVLinearGradient.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		2EB899A51E6E30250096B735 /* TheTableUITests */ = {
@@ -557,6 +599,7 @@
 				2EB899A51E6E30250096B735 /* TheTableUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				37A3EE71A92F49FBA70F47EF /* Resources */,
+				2EB649C71F68B70E00D8C2A4 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -839,6 +882,34 @@
 			remoteRef = 2E262ADA1E58A3D600C92634 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		2EB649E81F68B70F00D8C2A4 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = 2EB649E71F68B70F00D8C2A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2EB649EA1F68B70F00D8C2A4 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = 2EB649E91F68B70F00D8C2A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2EB649EC1F68B70F00D8C2A4 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = 2EB649EB1F68B70F00D8C2A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2EB649EE1F68B70F00D8C2A4 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = 2EB649ED1F68B70F00D8C2A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2EBCEF981E8C8750003E309E /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -912,7 +983,7 @@
 		5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libRCTAnimation-tvOS.a";
+			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
