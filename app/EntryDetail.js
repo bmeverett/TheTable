@@ -35,6 +35,7 @@ export default class EntryDetail extends React.Component {
             source={{ html: santitize }}
             javaScriptEnabled
             onNavigationStateChange={this.onNavigationStateChange}
+            scalesPageToFit={false}
           />
         </View>
       </View>
