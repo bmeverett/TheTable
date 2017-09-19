@@ -31,8 +31,8 @@
 		2E28ADF01EA77476000BEB27 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E28ADEF1EA77476000BEB27 /* UserNotificationsUI.framework */; };
 		2EB899A71E6E30250096B735 /* TheTableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB899A61E6E30250096B735 /* TheTableUITests.swift */; };
 		2EB899C91E6E30AD0096B735 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB899C81E6E30AD0096B735 /* SnapshotHelper.swift */; };
-		2ECA85731E4F854D006143EC /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		2ECD2E3D1DD5E2F50080AF7D /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		2ECA85731E4F854D006143EC /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		2ECD2E3D1DD5E2F50080AF7D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		31D4E11783554B8D9D4D7E06 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 903F5E352B9F4382BA904537 /* EvilIcons.ttf */; };
 		4532BBF28F94485A0FD85058 /* libPods-TheTableUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED283C81F935923C5C986F2 /* libPods-TheTableUITests.a */; };
 		4F683BF0135A4706A7CF59B6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 913FF3D334A74DA0A3B76421 /* SimpleLineIcons.ttf */; };
@@ -364,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E28ADF01EA77476000BEB27 /* UserNotificationsUI.framework in Frameworks */,
-				2ECA85731E4F854D006143EC /* BuildFile in Frameworks */,
+				2ECA85731E4F854D006143EC /* (null) in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -1085,7 +1085,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2E28AD9B1EA6F3F2000BEB27 /* GoogleService-Info.plist in Resources */,
 				2E262AE51E58A60F00C92634 /* YTPlayerView-iframe-player.html in Resources */,
-				2ECD2E3D1DD5E2F50080AF7D /* BuildFile in Resources */,
+				2ECD2E3D1DD5E2F50080AF7D /* (null) in Resources */,
 				953ECE602DF843F693A76C8A /* Entypo.ttf in Resources */,
 				31D4E11783554B8D9D4D7E06 /* EvilIcons.ttf in Resources */,
 				5A2F07F168144413A5657471 /* FontAwesome.ttf in Resources */,
@@ -1385,7 +1385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheTable/TheTable.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KMSJ6H33G8;
 				INFOPLIST_FILE = thetable/Info.plist;
@@ -1408,7 +1408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheTable/TheTable.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = KMSJ6H33G8;
 				INFOPLIST_FILE = thetable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
