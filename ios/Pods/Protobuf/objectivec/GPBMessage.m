@@ -130,7 +130,7 @@ static NSError *ErrorFromException(NSException *exception) {
 
 static void CheckExtension(GPBMessage *self,
                            GPBExtensionDescriptor *extension) {
-  if ([self class] != extension.containingMessageClass) {
+  if (![self isKindOfClass:extension.containingMessageClass]) {
     [NSException
          raise:NSInvalidArgumentException
         format:@"Extension %@ used on wrong class (%@ instead of %@)",
@@ -736,6 +736,25 @@ void GPBClearMessageAutocreator(GPBMessage *self) {
   self->autocreatorField_ = nil;
   [self->autocreatorExtension_ release];
   self->autocreatorExtension_ = nil;
+}
+
+// Call this before using the readOnlySemaphore_. This ensures it is created only once.
+void GPBPrepareReadOnlySemaphore(GPBMessage *self) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdirect-ivar-access"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+  // Create the semaphore on demand (rather than init) as developers might not cause them
+  // to be needed, and the heap usage can add up.  The atomic swap is used to avoid needing
+  // another lock around creating it.
+  if (self->readOnlySemaphore_ == nil) {
+    dispatch_semaphore_t worker = dispatch_semaphore_create(1);
+    if (!OSAtomicCompareAndSwapPtrBarrier(NULL, worker, (void * volatile *)&(self->readOnlySemaphore_))) {
+      dispatch_release(worker);
+    }
+  }
+
+#pragma clang diagnostic pop
 }
 
 static GPBUnknownFieldSet *GetOrMakeUnknownFields(GPBMessage *self) {
@@ -2353,17 +2372,11 @@ static void MergeRepeatedNotPackedFieldFromCodedInputStream(
         // zero signals EOF / limit reached
         return;
       } else {
-        if (GPBPreserveUnknownFields(syntax)) {
-          if (![self parseUnknownField:input
-                     extensionRegistry:extensionRegistry
-                                   tag:tag]) {
-            // it's an endgroup tag
-            return;
-          }
-        } else {
-          if (![input skipField:tag]) {
-            return;
-          }
+        if (![self parseUnknownField:input
+                   extensionRegistry:extensionRegistry
+                                 tag:tag]) {
+          // it's an endgroup tag
+          return;
         }
       }
     }  // if(!merged)
@@ -3064,7 +3077,7 @@ static void ResolveIvarSet(GPBFieldDescriptor *field,
 + (BOOL)resolveInstanceMethod:(SEL)sel {
   const GPBDescriptor *descriptor = [self descriptor];
   if (!descriptor) {
-    return NO;
+    return [super resolveInstanceMethod:sel];
   }
 
   // NOTE: hasOrCountSel_/setHasSel_ will be NULL if the field for the given
@@ -3152,8 +3165,17 @@ static void ResolveIvarSet(GPBFieldDescriptor *field,
   if (result.impToAdd) {
     const char *encoding =
         GPBMessageEncodingForSelector(result.encodingSelector, YES);
-    BOOL methodAdded = class_addMethod(descriptor.messageClass, sel,
-                                       result.impToAdd, encoding);
+    Class msgClass = descriptor.messageClass;
+    BOOL methodAdded = class_addMethod(msgClass, sel, result.impToAdd, encoding);
+    // class_addMethod() is documented as also failing if the method was already
+    // added; so we check if the method is already there and return success so
+    // the method dispatch will still happen.  Why would it already be added?
+    // Two threads could cause the same method to be bound at the same time,
+    // but only one will actually bind it; the other still needs to return true
+    // so things will dispatch.
+    if (!methodAdded) {
+      methodAdded = GPBClassHasSel(msgClass, sel);
+    }
     return methodAdded;
   }
   return [super resolveInstanceMethod:sel];
@@ -3161,7 +3183,7 @@ static void ResolveIvarSet(GPBFieldDescriptor *field,
 
 + (BOOL)resolveClassMethod:(SEL)sel {
   // Extensions scoped to a Message and looked up via class methods.
-  if (GPBResolveExtensionClassMethod(self, sel)) {
+  if (GPBResolveExtensionClassMethod([self descriptor].messageClass, sel)) {
     return YES;
   }
   return [super resolveClassMethod:sel];

@@ -749,6 +749,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KMSJ6H33G8;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1385,7 +1386,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheTable/TheTable.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 14;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KMSJ6H33G8;
 				INFOPLIST_FILE = thetable/Info.plist;
@@ -1397,6 +1399,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTable;
 				PRODUCT_NAME = TheTable;
+				PROVISIONING_PROFILE = "420e6d16-36f8-47a3-bc90-f84c6986f0d8";
+				PROVISIONING_PROFILE_SPECIFIER = TheTableDev;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1407,8 +1411,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheTable/TheTable.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 14;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = KMSJ6H33G8;
 				INFOPLIST_FILE = thetable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1419,6 +1424,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.brandoneverett.TheTable;
 				PRODUCT_NAME = TheTable;
+				PROVISIONING_PROFILE = "095792f4-2f1d-46d2-b1c9-d7691d768c54";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore me.brandoneverett.TheTable";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1511,7 +1518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1549,7 +1556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
