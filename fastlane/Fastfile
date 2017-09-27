@@ -11,7 +11,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "2.19.2"
+fastlane_version "2.56"
 
 default_platform :ios
 
@@ -31,7 +31,7 @@ platform :ios do
     
     increment_build_number(xcodeproj: "ios/TheTable.xcodeproj")
     # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "TheTable") # Build your app - more options available
+    gym(scheme: "TheTable", workspace: "ios/TheTable.xcworkspace") # Build your app - more options available
     pilot(skip_waiting_for_build_processing: true)
 
     # sh "your_script.sh"
@@ -42,12 +42,15 @@ platform :ios do
   lane :release do
     # match(type: "appstore")
     # snapshot
-    gym(scheme: "TheTable") # Build your app - more options available
+    gym(scheme: "TheTable", workspace: "ios/TheTable.xcworkspace") # Build your app - more options available
     deliver(force: true)
     # frameit
   end
 
   # You can define as many lanes as you want
+  lane :certs do
+    match(app_identifier: ["me.brandoneverett.TheTable"], readonly: true)
+  end
 
   after_all do |lane|
     # This block is called, only if the executed lane was successful
