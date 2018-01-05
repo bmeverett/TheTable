@@ -15,9 +15,4 @@ target 'TheTable' do
     # Pods for testing
   end
 
-  target 'TheTableUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
