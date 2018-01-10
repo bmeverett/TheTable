@@ -91,12 +91,10 @@ export default class HomeTab extends React.Component {
     }).catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
-    this.props.navigator.push({
-      component: EntryDetail,
+    this.props.navigation.navigate('EntryDetail', {
       title: entry.title,
-      passProps: { entry },
+      entry: entry,
     });
-    this.props.navigator.pop;
   }
   _renderEntries(entry, i) {
     if (i === 0) {
@@ -136,7 +134,7 @@ export default class HomeTab extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }} >
-        <View style={{ alignItems: 'center', flex: 1, paddingTop: 50 }}>
+        <View style={{ alignItems: 'center', flex: 1 }}>
           <Image
             source={require('../images/thetable425.png')}
             style={{ flex: 1 }}

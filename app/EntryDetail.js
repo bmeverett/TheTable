@@ -12,7 +12,6 @@ const config = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
     backgroundColor: 'white',
   },
   webView: {
@@ -22,14 +21,14 @@ const styles = StyleSheet.create({
 
 export default class EntryDetail extends React.Component {
   render() {
-    let santitize = safeHtml(this.props.entry.body, config);
+    let santitize = safeHtml(this.props.navigation.state.params.entry.body, config);
     const test = santitize.replace('&lt;', '<').replace('&quot;', '"').replace('/&gt;', '>').replace('&quot; ', '"');
     santitize = safeHtml(test, config).trim();
-    const imageSource = parseImage(this.props.entry.body);
+    const imageSource = parseImage(this.props.navigation.state.params.entry.body);
     return (
       <View style={styles.container}>
         {imageSource}
-        <View style={{ flex: 1, padding: 0 }}>
+        <View style={{ flex: 1 }}>
           <WebView
             automaticallyAdjustContentInsets
             source={{ html: santitize }}
