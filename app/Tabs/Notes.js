@@ -6,6 +6,7 @@ import parseImage from '.././ParseImage';
 export default class Notes extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.navigation);
     this.state = {
       text: this.props.text,
       subject: this.props.subject,
@@ -41,7 +42,10 @@ export default class Notes extends React.Component {
             <TextInput
               placeholder="Subject"
               style={{ margin: 5, height: 70, fontSize: 14 }}
-              onChangeText={this.props.onSubjectChange}
+              onChangeText={() => {
+                this.props.onSubjectChange;
+                this.props.navigation.setParams({subject: this.props.subject});
+              }}
               value={this.props.subject}
               editable
             />
@@ -51,7 +55,10 @@ export default class Notes extends React.Component {
               onFocus={this.inputFocused.bind(this, 'notes')}
               placeholder="Notes"
               style={{ margin: 5, flex: 1, fontSize: 14, marginBottom: 100, marginRight: 50 }}
-              onChangeText={this.props.onChangeText}
+              onChangeText={() => {
+                this.props.onChangeText;
+                this.props.navigation.setParams({text: this.props.text});
+              }}
               value={this.props.text}
               editable
               multiline

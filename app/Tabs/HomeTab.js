@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderColor: '#E5D767',
+    borderColor: 'black', // '#E5D767',
     flex: 1,
   },
   title: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   description: {
-    color: '#B4AEAE',
+    color: 'black', // '#B4AEAE',
     fontSize: 12,
     marginBottom: 5,
   },

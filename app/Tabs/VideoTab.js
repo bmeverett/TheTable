@@ -51,7 +51,7 @@ export default class VideoTab extends React.Component {
   }
   fetchVideos() {
     Api.fetchVideos().then((res) => {
-      this.state.videoId = res.items[0].snippet.resourceId.videoId;
+      // this.state.videoId = res.items[0].snippet.resourceId.videoId;
       this.setState({ videos: [] });
       this.setState({ videos: this.state.videos.concat(res.items) });
     });
