@@ -54,9 +54,14 @@ const RootTabs = TabNavigator({
         <Button
           title="Share"
           onPress={() => {
-            Linking.canOpenURL(`mailto:?subject=${navigation.state.params.subject}&body=${navigation.state.params.text}`).then((supported) => {
+            let subject = navigation.state.params ? navigation.state.params.subject : '';
+            let text = navigation.state.params ? navigation.state.params.text : '';
+
+            console.log(subject);
+            console.log(text);
+            Linking.canOpenURL(`mailto:?subject=${subject}&body=${text}`).then((supported) => {
               if (supported) {
-                Linking.openURL(`mailto:?subject=${navigation.state.params.subject}&body=${navigation.state.params.text}`);
+                Linking.openURL(`mailto:?subject=${subject}&body=${text}`);
               } else {
                 Alert.alert('Error', 'Don\'t know how to open URI: ');
               }
