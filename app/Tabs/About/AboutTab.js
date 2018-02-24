@@ -28,7 +28,10 @@ export default class AboutTab extends React.Component {
             source={require('../../images/thetablesmall.png')}
           />
         </View>
-        <SegmentedControlIOS
+        <Who style={{ flex: 1 }} />
+        <Where />
+        <Times />
+        {/* <SegmentedControlIOS
           values={['Who We Are', 'Where We Meet', 'Times We Meet']}
           selectedIndex={this.state.selectedIndex}
           onChange={(event) => {
@@ -37,7 +40,7 @@ export default class AboutTab extends React.Component {
           style={{ padding: 10 }}
           tintColor='#E5D767'
         />
-        {ctrl}
+        {ctrl} */}
       </ScrollView>);
   }
 
