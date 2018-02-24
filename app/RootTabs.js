@@ -26,16 +26,10 @@ const RootTabs = TabNavigator({
     },
   },
   Videos: {
-    screen: VideoTab,
+    screen: LiveView,
     navigationOptions: ({ navigation }) => ({
-      tabBarLabel: 'Videos',
-      title: 'Videos',
-      headerRight: (
-        <Button
-          onPress={() => navigation.navigate('LiveView')}
-          title="Live"
-        />
-      ),
+      tabBarLabel: 'Live',
+      title: 'Live',
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon2
           name={focused ? 'social-youtube' : 'social-youtube'}
