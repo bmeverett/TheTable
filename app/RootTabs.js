@@ -5,10 +5,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/SimpleLineIcons';
 import HomeTab from './Tabs/HomeTab';
 import Notes from './Tabs/Notes';
-import VideoTab from './Tabs/VideoTab';
 import AboutTab from './Tabs/About/AboutTab';
 import EntryDetail from './EntryDetail';
 import LiveView from './LiveView';
+import GivingTab from './Tabs/GivingTab';
 
 const RootTabs = TabNavigator({
   Home: {
@@ -51,8 +51,6 @@ const RootTabs = TabNavigator({
             let subject = navigation.state.params ? navigation.state.params.subject : '';
             let text = navigation.state.params ? navigation.state.params.text : '';
 
-            console.log(subject);
-            console.log(text);
             Linking.canOpenURL(`mailto:?subject=${subject}&body=${text}`).then((supported) => {
               if (supported) {
                 Linking.openURL(`mailto:?subject=${subject}&body=${text}`);
@@ -79,6 +77,20 @@ const RootTabs = TabNavigator({
         />
       ),
     }),
+  },
+  Giving: {
+    screen: GivingTab,
+    navigationOptions: {
+      tabBarLabel: 'Give',
+      title: 'Give',
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? 'logo-usd' : 'logo-usd'}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      ),
+    },
   },
   About: {
     screen: AboutTab,
