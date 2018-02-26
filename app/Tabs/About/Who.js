@@ -8,7 +8,6 @@ export default function Who(props) {
       The Table is designed to help young adults find and follow jesus and build lasting
       relationships with others. We talk about big concepts, interview awesome people, serve, and eat together every month.
       </Text>
-      <Text />
     </View>
   );
 }
