@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactNative, { Image, StyleSheet, View, WebView } from 'react-native';
+import ReactNative, { Image, StyleSheet, View, WebView, Platform } from 'react-native';
 import parseImage from './ParseImage';
 
 var safeHtml = require('safe-html');
@@ -34,7 +34,7 @@ export default class EntryDetail extends React.Component {
             source={{ html: santitize }}
             javaScriptEnabled
             onNavigationStateChange={this.onNavigationStateChange}
-            scalesPageToFit={false}
+            scalesPageToFit={Platform.OS === 'android'}
           />
         </View>
       </View>
