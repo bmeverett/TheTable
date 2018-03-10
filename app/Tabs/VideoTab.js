@@ -7,12 +7,12 @@ import config from '../../Config';
 const styles = StyleSheet.create({
 
   wrapper: {
-    paddingTop: 0,
-    paddingBottom: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderColor: '#E5D767',
+    borderColor: 'black', // '#E5D767',
   },
   title: {
     paddingTop: 2,
@@ -37,7 +37,7 @@ export default class VideoTab extends React.Component {
       quality: null,
       error: null,
       isPlaying: false,
-      videoId: 'Q0TohHXWtis',
+      videoId: '',
       videos: [],
       refreshing: false,
     };
@@ -51,7 +51,7 @@ export default class VideoTab extends React.Component {
   }
   fetchVideos() {
     Api.fetchVideos().then((res) => {
-      this.state.videoId = res.items[0].snippet.resourceId.videoId;
+      // this.state.videoId = res.items[0].snippet.resourceId.videoId;
       this.setState({ videos: [] });
       this.setState({ videos: this.state.videos.concat(res.items) });
     });
@@ -92,7 +92,7 @@ export default class VideoTab extends React.Component {
           onError={(e) => { this.setState({ error: e.error }); }}
           onProgress={(e) => { this.setState({ currentTime: e.currentTime, duration: e.duration }); }}
           apiKey={config.GOOGLE_API_KEY}
-          style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'black' }}
+          style={{ flex: 1, backgroundColor: 'black' }}
         />
         <ScrollView
           refreshControl={

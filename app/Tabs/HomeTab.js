@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderColor: '#E5D767',
+    borderColor: 'black', // '#E5D767',
     flex: 1,
   },
   title: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   description: {
-    color: '#B4AEAE',
+    color: 'black', // '#B4AEAE',
     fontSize: 12,
     marginBottom: 5,
   },
@@ -91,12 +91,10 @@ export default class HomeTab extends React.Component {
     }).catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
-    this.props.navigator.push({
-      component: EntryDetail,
+    this.props.navigation.navigate('EntryDetail', {
       title: entry.title,
-      passProps: { entry },
+      entry: entry,
     });
-    this.props.navigator.pop;
   }
   _renderEntries(entry, i) {
     if (i === 0) {
@@ -136,7 +134,7 @@ export default class HomeTab extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }} >
-        <View style={{ alignItems: 'center', flex: 1, paddingTop: 50 }}>
+        <View style={{ alignItems: 'center', flex: 1 }}>
           <Image
             source={require('../images/thetable425.png')}
             style={{ flex: 1 }}

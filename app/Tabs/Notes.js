@@ -34,24 +34,28 @@ export default class Notes extends React.Component {
   }
   render() {
     return (
-      <ScrollView ref='scrollView' contentContainerStyle={{ flex: 1 }} >
+      <ScrollView ref="scrollView" contentContainerStyle={{ flex: 1 }} >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ flex: 1 }} >
             {this.state.imgSource}
             <TextInput
               placeholder="Subject"
               style={{ margin: 5, height: 70, fontSize: 14 }}
-              onChangeText={this.props.onSubjectChange}
-              value={this.props.subject}
+              onChangeText={(text) => {
+                this.props.navigation.setParams({ subject: text });
+              }}
+              value={this.state.subject}
               editable
             />
             <TextInput
             // hack this for now, can fix with propper refs later
-              ref='notes'
+              ref="notes"
               onFocus={this.inputFocused.bind(this, 'notes')}
               placeholder="Notes"
               style={{ margin: 5, flex: 1, fontSize: 14, marginBottom: 100, marginRight: 50 }}
-              onChangeText={this.props.onChangeText}
+              onChangeText={(text) => {
+                this.props.navigation.setParams({ text });
+              }}
               value={this.props.text}
               editable
               multiline
