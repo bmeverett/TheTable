@@ -1,5 +1,15 @@
 import React from 'react';
-import { Alert, ScrollView, Button, StyleSheet, Text, TouchableHighlight, View, Image, RefreshControl } from 'react-native';
+import {
+  Alert,
+  ScrollView,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+  Image,
+  RefreshControl,
+} from 'react-native';
 import Api from '../Api/RssFeedApi';
 import EntryDetail from '../EntryDetail';
 import Highlighter from 'react-native-highlight-words';
@@ -80,15 +90,20 @@ export default class HomeTab extends React.Component {
     this.setState({ refreshing: false });
   }
   loadEntries() {
-    const url = 'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
-    Api.fetchRss(url).then((res) => {
+    const url =
+      'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
+    Api.fetchRss(url)
+      .then(res => {
         // if (res.responseStatus == 200) {
-      const entries = res.items;
-      const filterEnts = entries.filter(x => new Date(x.publishOn).getMonth() === new Date().getMonth());
-      // clear the entries to be able to reload them
-      this.setState({ feeds: [] });
-      this.setState({ feeds: this.state.feeds.concat(filterEnts) });
-    }).catch(error => console.log(error));
+        const entries = res.items;
+        const filterEnts = entries.filter(
+          x => new Date(x.publishOn).getMonth() === new Date().getMonth()
+        );
+        // clear the entries to be able to reload them
+        this.setState({ feeds: [] });
+        this.setState({ feeds: this.state.feeds.concat(filterEnts) });
+      })
+      .catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
     this.props.navigation.navigate('EntryDetail', {
@@ -108,7 +123,9 @@ export default class HomeTab extends React.Component {
       <TouchableHighlight
         key={i}
         underlayColor="rgba(0,0,0,.1)"
-        onPress={() => { this._showEntryDetails(entry); }}
+        onPress={() => {
+          this._showEntryDetails(entry);
+        }}
       >
         <View style={styles.wrapper}>
           <View style={styles.header}>
@@ -118,7 +135,9 @@ export default class HomeTab extends React.Component {
               textToHighlight={entry.title}
               style={styles.title}
             />
-            <Text style={styles.description}>{new Date(entry.publishOn).toDateString()}</Text>
+            <Text style={styles.description}>
+              {new Date(entry.publishOn).toDateString()}
+            </Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -133,19 +152,24 @@ export default class HomeTab extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }} >
-        <View style={{ alignItems: 'center', flex: 1 }}>
-          <Image
-            source={require('../images/thetable425.png')}
-            style={{ flex: 1 }}
-          />
-        </View>
+      <View style={{ flex: 1 }}>
+        <Image
+          source={{
+            uri:
+              'https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/58a49f9c37c581f8f7acd423/1487183773982/TableBackground.JPG',
+          }}
+          style={{ flex: 1, alignSelf: 'auto' }}
+          resizeMode="cover"
+        />
         <View style={{ flex: 1, paddingTop: 10 }}>
           <LinearGradient
             colors={['#E5D767', '#E5D000']}
             style={styles.gradient}
           >
-            <TouchableHighlight onPress={this.buttonPress} underlayColor="transparent">
+            <TouchableHighlight
+              onPress={this.buttonPress}
+              underlayColor="transparent"
+            >
               <Text style={styles.text}> TONIGHT </Text>
             </TouchableHighlight>
           </LinearGradient>
@@ -167,4 +191,3 @@ export default class HomeTab extends React.Component {
     );
   }
 }
-
