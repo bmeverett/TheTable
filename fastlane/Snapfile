@@ -2,13 +2,15 @@
 
 # A list of devices you want to take the screenshots from
  devices([
+   "iPhone X",
+   "iPhone 8",
+   "iPhone 8 Plus",
    "iPhone 7",
    "iPhone 7 Plus",
    "iPhone 6s",
    "iPhone 6s Plus",
    "iPhone 6",
-   "iPhone 6 Plus",
-   "iPhone 5"
+   "iPhone 6 Plus"
 #   "iPad Pro (12.9 inch)",
 #   "iPad Pro (9.7 inch)",
 #   "Apple TV 1080p"
@@ -30,9 +32,10 @@ languages([
 # clear_previous_screenshots true # remove the '#' to clear all previously generated screenshots before creating new ones
 
 # Choose which project/workspace to use
- project "./ios/TheTable.xcodeproj"
-# workspace "./Project.xcworkspace"
+ #project "./ios/TheTable.xcodeproj"
+ workspace "./ios/TheTable.xcworkspace"
 
+ ios_version '11.2'
 # Arguments to pass to the app on launch. See https://github.com/fastlane/snapshot#launch-arguments
 # launch_arguments(["-favColor red"])
 

@@ -22,19 +22,4 @@
 
 @implementation TheTableTests
 
-- (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
-{
-  if (test(view)) {
-    return YES;
-  }
-  for (UIView *subview in [view subviews]) {
-    if ([self findSubviewInView:subview matching:test]) {
-      return YES;
-    }
-  }
-  return NO;
-}
-
-
-
 @end
