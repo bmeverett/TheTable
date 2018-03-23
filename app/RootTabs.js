@@ -10,6 +10,7 @@ import EntryDetail from './EntryDetail';
 import LiveView from './LiveView';
 import GivingTab from './Tabs/GivingTab';
 
+const giveUrl = 'https://www.eservicepayments.com/cgi-bin/Vanco_ver3.vps?appver3=QYgs3QBcu8xbOrLktBLPzvKXho7Z1f-vPAmlEy31-Mtxu1xOi9A1zOcBRvMIg3dWDcwKUSIIMplPYbhp_Bye2yBBvx9-fvMagEqoHNQ2OkpXglg96ix4LAXyIe06lRTbvIbrKP-ltHb6Y7F8Ylp0-44S31PvHyzCSPZoGMvkv08=&ver=3https://www.eservicepayments.com/cgi-bin/Vanco_ver3.vps?appver3=QYgs3QBcu8xbOrLktBLPzvKXho7Z1f-vPAmlEy31-Mtxu1xOi9A1zOcBRvMIg3dWDcwKUSIIMplPYbhp_Bye2yBBvx9-fvMagEqoHNQ2OkpXglg96ix4LAXyIe06lRTbvIbrKP-ltHb6Y7F8Ylp0-44S31PvHyzCSPZoGMvkv08=&ver=3';
 const RootTabs = TabNavigator({
   Home: {
     screen: HomeTab,
@@ -78,25 +79,17 @@ const RootTabs = TabNavigator({
       ),
     }),
   },
-  Giving: {
-    screen: GivingTab,
-    navigationOptions: {
-      tabBarLabel: 'Give',
-      title: 'Give',
-      tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'logo-usd' : 'logo-usd'}
-          size={26}
-          style={{ color: tintColor }}
-        />
-      ),
-    },
-  },
   About: {
     screen: AboutTab,
     navigationOptions: {
       tabBarLabel: 'About',
       title: 'About',
+      headerRight: (
+        <Button
+          title="Give"
+          onPress={() => { Linking.openURL(giveUrl); }}
+        />
+      ),
       tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-information-circle-outline' : 'ios-information-circle-outline'}

@@ -6,21 +6,7 @@ import Times from './Times';
 
 
 export default class AboutTab extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedIndex: 0,
-    };
-  }
   render() {
-    var ctrl;
-    if (this.state.selectedIndex === 0) {
-      ctrl = <Who />;
-    } else if (this.state.selectedIndex === 1) {
-      ctrl = <Where />;
-    } else {
-      ctrl = <Times />;
-    }
     return (
       <ScrollView style={{ flex: 1, paddingTop: 10 }} >
         <View style={{ alignItems: 'center', paddingBottom: 10 }} >
@@ -31,16 +17,6 @@ export default class AboutTab extends React.Component {
         <Who style={{ flex: 1 }} />
         <Where />
         <Times />
-        {/* <SegmentedControlIOS
-          values={['Who We Are', 'Where We Meet', 'Times We Meet']}
-          selectedIndex={this.state.selectedIndex}
-          onChange={(event) => {
-            this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
-          }}
-          style={{ padding: 10 }}
-          tintColor='#E5D767'
-        />
-        {ctrl} */}
       </ScrollView>);
   }
 
