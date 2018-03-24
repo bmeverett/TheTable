@@ -1,6 +1,11 @@
 package com.thetable;
 
+import android.util.Log;
+
 import com.facebook.react.ReactActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +16,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "TheTable";
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "FBID: " + FirebaseInstanceId.getInstance().getToken());
     }
 }
