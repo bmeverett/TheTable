@@ -11,8 +11,9 @@
    #"iPhone 6s Plus",
    #"iPhone 6",
    #"iPhone 6 Plus"
-#   "iPad Pro (12.9 inch)",
-#   "iPad Pro (9.7 inch)",
+  "iPad Pro (12.9-inch)",
+  "iPad Pro (9.7-inch)",
+  "iPad Pro (10.5-inch)",
 #   "Apple TV 1080p"
  ])
 
