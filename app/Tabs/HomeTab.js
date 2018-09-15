@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Alert,
   ScrollView,
@@ -9,16 +9,17 @@ import {
   View,
   Image,
   RefreshControl,
-} from 'react-native';
-import Api from '../Api/RssFeedApi';
-import EntryDetail from '../EntryDetail';
-import Highlighter from 'react-native-highlight-words';
-import LinearGradient from 'react-native-linear-gradient';
+  SafeAreaView
+} from "react-native";
+import Api from "../Api/RssFeedApi";
+import EntryDetail from "../EntryDetail";
+import Highlighter from "react-native-highlight-words";
+import LinearGradient from "react-native-linear-gradient";
 
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 10
   },
   wrapper: {
     paddingTop: 10,
@@ -26,44 +27,44 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderColor: 'black', // '#E5D767',
-    flex: 1,
+    borderColor: "black", // '#E5D767',
+    flex: 1
   },
   title: {
     paddingTop: 2,
     paddingBottom: 3,
     paddingRight: 15,
-    fontWeight: 'bold',
-    fontSize: 16,
+    fontWeight: "bold",
+    fontSize: 16
   },
   description: {
-    color: 'black', // '#B4AEAE',
+    color: "black", // '#B4AEAE',
     fontSize: 12,
-    marginBottom: 5,
+    marginBottom: 5
   },
   smallText: {
     fontSize: 11,
-    textAlign: 'right',
-    color: '#B4AEAE',
+    textAlign: "right",
+    color: "#B4AEAE"
   },
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'white',
+    flexDirection: "column",
+    backgroundColor: "white"
   },
   gradient: {
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 35,
-    marginHorizontal: 50,
+    marginHorizontal: 50
   },
   text: {
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-    fontSize: 20,
-  },
+    color: "#ffffff",
+    backgroundColor: "transparent",
+    fontSize: 20
+  }
 });
 
 export default class HomeTab extends React.Component {
@@ -72,8 +73,8 @@ export default class HomeTab extends React.Component {
     this.state = {
       feeds: [],
       refreshing: false,
-      imageSrc: '',
-      tonight: null,
+      imageSrc: "",
+      tonight: null
     };
     this.buttonPress = this.buttonPress.bind(this);
   }
@@ -91,7 +92,7 @@ export default class HomeTab extends React.Component {
   }
   loadEntries() {
     const url =
-      'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
+      "https://www.thetableinbetween.org/weekly-topic?format=json-pretty";
     Api.fetchRss(url)
       .then(res => {
         // if (res.responseStatus == 200) {
@@ -106,9 +107,9 @@ export default class HomeTab extends React.Component {
       .catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
-    this.props.navigation.navigate('EntryDetail', {
+    this.props.navigation.navigate("EntryDetail", {
       title: entry.title,
-      entry: entry,
+      entry: entry
     });
   }
   _renderEntries(entry, i) {
@@ -130,8 +131,8 @@ export default class HomeTab extends React.Component {
         <View style={styles.wrapper}>
           <View style={styles.header}>
             <Highlighter
-              highlightStyle={{ color: '#E5D767' }}
-              searchWords={['//', '/ /']}
+              highlightStyle={{ color: "#E5D767" }}
+              searchWords={["//", "/ /"]}
               textToHighlight={entry.title}
               style={styles.title}
             />
@@ -147,47 +148,49 @@ export default class HomeTab extends React.Component {
     if (this.state.tonight) {
       this._showEntryDetails(this.state.tonight);
     } else {
-      Alert.alert('No items are loaded');
+      Alert.alert("No items are loaded");
     }
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Image
-          source={{
-            uri:
-              'https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/58a49f9c37c581f8f7acd423/1487183773982/TableBackground.JPG',
-          }}
-          style={{ flex: 1, alignSelf: 'auto' }}
-          resizeMode="cover"
-        />
-        <View style={{ flex: 1, paddingTop: 10 }}>
-          <LinearGradient
-            colors={['#E5D767', '#E5D000']}
-            style={styles.gradient}
-          >
-            <TouchableHighlight
-              onPress={this.buttonPress}
-              underlayColor="transparent"
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={{
+              uri:
+                "https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/58a49f9c37c581f8f7acd423/1487183773982/TableBackground.JPG"
+            }}
+            style={{ flex: 1, alignSelf: "auto" }}
+            resizeMode="cover"
+          />
+          <View style={{ flex: 1, paddingTop: 10 }}>
+            <LinearGradient
+              colors={["#E5D767", "#E5D000"]}
+              style={styles.gradient}
             >
-              <Text style={styles.text}> TONIGHT </Text>
-            </TouchableHighlight>
-          </LinearGradient>
+              <TouchableHighlight
+                onPress={this.buttonPress}
+                underlayColor="transparent"
+              >
+                <Text style={styles.text}> TONIGHT </Text>
+              </TouchableHighlight>
+            </LinearGradient>
 
-          <ScrollView
-            style={styles.scrollView}
-            automaticallyAdjustContentInsets={false}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh.bind(this)}
-              />
-            }
-          >
-            {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
-          </ScrollView>
+            <ScrollView
+              style={styles.scrollView}
+              automaticallyAdjustContentInsets={false}
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh.bind(this)}
+                />
+              }
+            >
+              {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
+            </ScrollView>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
