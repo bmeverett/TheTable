@@ -1,6 +1,7 @@
 import React from "react";
-import { Alert, Button, Keyboard, Linking } from "react-native";
+import { Alert, Button, Keyboard, Linking, Platform } from "react-native";
 import {
+  createMaterialTopTabNavigator,
   createBottomTabNavigator,
   createStackNavigator
 } from "react-navigation";
@@ -99,47 +100,62 @@ const AboutStack = createStackNavigator({
   }
 });
 
-const Base = createBottomTabNavigator(
-  {
-    Home: HomeStack,
-    Live: LiveStack,
-    Notes: NotesStack,
-    About: AboutStack
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === "Home") {
-          iconName = `ios-home${focused ? "" : "-outline"}`;
-        } else if (routeName === "Live") {
-          return (
-            <Icon2
-              name={focused ? "social-youtube" : "social-youtube"}
-              size={26}
-              style={{ color: tintColor }}
-            />
-          );
-        } else if (routeName === "Notes") {
-          iconName = `ios-clipboard${focused ? "" : "-outline"}`;
-        } else if (routeName === "About") {
-          return (
-            <Ionicons
-              name={
-                focused
-                  ? "ios-information-circle-outline"
-                  : "ios-information-circle-outline"
-              }
-              size={26}
-              style={{ color: tintColor }}
-            />
-          );
-        }
-        return <Ionicons name={iconName} size={26} color={tintColor} />;
+const navigationOptions = {
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      let iconName;
+      if (routeName === "Home") {
+        iconName = `ios-home${focused ? "" : "-outline"}`;
+      } else if (routeName === "Live") {
+        return (
+          <Icon2
+            name={focused ? "social-youtube" : "social-youtube"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        );
+      } else if (routeName === "Notes") {
+        iconName = `ios-clipboard${focused ? "" : "-outline"}`;
+      } else if (routeName === "About") {
+        return (
+          <Ionicons
+            name={
+              focused
+                ? "ios-information-circle-outline"
+                : "ios-information-circle-outline"
+            }
+            size={26}
+            style={{ color: tintColor }}
+          />
+        );
       }
-    })
-  }
-);
+      return <Ionicons name={iconName} size={26} color={tintColor} />;
+    }
+  })
+};
+
+const Base = Platform.select({
+  ios: () =>
+    createBottomTabNavigator(
+      {
+        Home: HomeStack,
+        Live: LiveStack,
+        Notes: NotesStack,
+        About: AboutStack
+      },
+      navigationOptions
+    ),
+  android: () =>
+    createMaterialTopTabNavigator(
+      {
+        Home: HomeStack,
+        Live: LiveStack,
+        Notes: NotesStack,
+        About: AboutStack
+      },
+      navigationOptions
+    )
+})();
 
 export default Base;
