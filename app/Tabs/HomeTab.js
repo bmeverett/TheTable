@@ -15,6 +15,7 @@ import Api from "../Api/RssFeedApi";
 import EntryDetail from "../EntryDetail";
 import Highlighter from "react-native-highlight-words";
 import LinearGradient from "react-native-linear-gradient";
+import SeriesCard from "../SeriesCard";
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -121,27 +122,28 @@ export default class HomeTab extends React.Component {
       }
     }
     return (
-      <TouchableHighlight
-        key={i}
-        underlayColor="rgba(0,0,0,.1)"
-        onPress={() => {
-          this._showEntryDetails(entry);
-        }}
-      >
-        <View style={styles.wrapper}>
-          <View style={styles.header}>
-            <Highlighter
-              highlightStyle={{ color: "#E5D767" }}
-              searchWords={["//", "/ /"]}
-              textToHighlight={entry.title}
-              style={styles.title}
-            />
-            <Text style={styles.description}>
-              {new Date(entry.publishOn).toDateString()}
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <SeriesCard title={entry.title} />
+      // <TouchableHighlight
+      //   key={i}
+      //   underlayColor="rgba(0,0,0,.1)"
+      //   onPress={() => {
+      //     this._showEntryDetails(entry);
+      //   }}
+      // >
+      //   <View style={styles.wrapper}>
+      //     <View style={styles.header}>
+      //       <Highlighter
+      //         highlightStyle={{ color: "#E5D767" }}
+      //         searchWords={["//", "/ /"]}
+      //         textToHighlight={entry.title}
+      //         style={styles.title}
+      //       />
+      //       <Text style={styles.description}>
+      //         {new Date(entry.publishOn).toDateString()}
+      //       </Text>
+      //     </View>
+      //   </View>
+      // </TouchableHighlight>
     );
   }
   buttonPress() {
@@ -155,27 +157,7 @@ export default class HomeTab extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <View style={{ flex: 1 }}>
-          <Image
-            source={{
-              uri:
-                "https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/58a49f9c37c581f8f7acd423/1487183773982/TableBackground.JPG"
-            }}
-            style={{ flex: 1, alignSelf: "auto" }}
-            resizeMode="cover"
-          />
           <View style={{ flex: 1, paddingTop: 10 }}>
-            <LinearGradient
-              colors={["#E5D767", "#E5D000"]}
-              style={styles.gradient}
-            >
-              <TouchableHighlight
-                onPress={this.buttonPress}
-                underlayColor="transparent"
-              >
-                <Text style={styles.text}> TONIGHT </Text>
-              </TouchableHighlight>
-            </LinearGradient>
-
             <ScrollView
               style={styles.scrollView}
               automaticallyAdjustContentInsets={false}
