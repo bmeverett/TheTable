@@ -18,7 +18,7 @@
     "react-native-linear-gradient": "^2.0.0",
     "react-native-tabs": "^1.0.9",
     "react-native-vector-icons": "^4.0.0",
-    "react-navigation": "^2.14.2",
+    "react-navigation": "^2.15.0",
     "safe-html": "^1.0.0",
     "undefined": "^0.1.0"
   },
