@@ -98,12 +98,12 @@ export default class HomeTab extends React.Component {
       .then(res => {
         // if (res.responseStatus == 200) {
         const entries = res.items;
-        const filterEnts = entries.filter(
-          x => new Date(x.publishOn).getMonth() === new Date().getMonth()
-        );
+        // const filterEnts = entries.filter(
+        //   x => new Date(x.publishOn).getMonth() === new Date().getMonth()
+        // );
         // clear the entries to be able to reload them
         this.setState({ feeds: [] });
-        this.setState({ feeds: this.state.feeds.concat(filterEnts) });
+        this.setState({ feeds: this.state.feeds.concat(entries) });
       })
       .catch(error => console.log(error));
   }
@@ -122,7 +122,7 @@ export default class HomeTab extends React.Component {
       }
     }
     return (
-      <SeriesCard title={entry.title} />
+      <SeriesCard key={i} title={entry.title} />
       // <TouchableHighlight
       //   key={i}
       //   underlayColor="rgba(0,0,0,.1)"

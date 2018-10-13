@@ -10,9 +10,11 @@ import {
   Icon,
   Button
 } from "native-base";
+import parseImage from "./ParseImage";
 
 export default class SeriesCard extends React.Component {
   render() {
+    let img = parseImage(this.props.img);
     return (
       <Content>
         <Card>
@@ -22,14 +24,15 @@ export default class SeriesCard extends React.Component {
             </Body>
           </CardItem>
           <CardItem cardBody>
-            <Image
+            {img}
+            {/* <Image
               style={{ height: 200, width: null, flex: 1 }}
               resizeMode="cover"
               source={{
                 uri:
                   "https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/5b98010b21c67c3479ac5435/1536688404277/Carry+The+Water_Main+Graphic.jpg"
               }}
-            />
+            /> */}
           </CardItem>
           <CardItem>
             <Left>
