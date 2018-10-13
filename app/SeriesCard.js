@@ -1,52 +1,56 @@
 import React from "react";
-import { Image } from "react-native";
-import {
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Body,
-  Left,
-  Icon,
-  Button
-} from "native-base";
+import { Button, Image, View, TouchableHighlight } from "react-native";
+import { Content, Card, CardItem, Text, Body, Left, Icon } from "native-base";
 import parseImage from "./ParseImage";
 
 export default class SeriesCard extends React.Component {
+  _showEntryDetails(entry) {
+    this.props.navigation.navigate("EntryDetail", {
+      title: entry.title,
+      entry: entry
+    });
+  }
   render() {
-    let img = parseImage(this.props.img);
+    const img = parseImage(this.props.img);
+    const title = this.props.title.split("//")[0];
+    var items = this.props.title.split("//")[1];
+    var buttons = [];
+
+    if (items) {
+      items = parseInt(items.split(" ")[2], 10);
+      for (var i = 0; i < items; i++) {
+        const btnTitle = "Part " + (i + 1);
+        buttons.push(
+          <Button
+            key={i}
+            onPress={() => this._showEntryDetails(this.props.entry)}
+            title={btnTitle}
+          />
+        );
+      }
+    }
+
     return (
       <Content>
         <Card>
           <CardItem>
             <Body>
-              <Text>{this.props.title}</Text>
+              <Text>{title}</Text>
             </Body>
           </CardItem>
           <CardItem cardBody>
-            {img}
-            {/* <Image
-              style={{ height: 200, width: null, flex: 1 }}
-              resizeMode="cover"
-              source={{
-                uri:
-                  "https://static1.squarespace.com/static/533c5af4e4b01e110d817213/t/5b98010b21c67c3479ac5435/1536688404277/Carry+The+Water_Main+Graphic.jpg"
-              }}
-            /> */}
+            <View style={{ flex: 1 }}>
+              <TouchableHighlight
+                onPress={() => {
+                  this._showEntryDetails(this.props.img);
+                }}
+              >
+                <View style={{ flex: 1, height: 200, width: null }}>{img}</View>
+              </TouchableHighlight>
+            </View>
           </CardItem>
           <CardItem>
-            <Left>
-              <Button>
-                <Text>Part 1</Text>
-              </Button>
-
-              <Button>
-                <Text>Part 2</Text>
-              </Button>
-              <Button>
-                <Text>Part 3</Text>
-              </Button>
-            </Left>
+            <Left>{buttons}</Left>
           </CardItem>
         </Card>
       </Content>

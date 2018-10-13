@@ -121,8 +121,22 @@ export default class HomeTab extends React.Component {
         return null;
       }
     }
+
+    if (
+      this.state.feeds[i - 1] &&
+      this.state.feeds[i - 1].title.split("//")[0] ===
+        entry.title.split("//")[0]
+    ) {
+      return null;
+    }
     return (
-      <SeriesCard key={i} title={entry.title} />
+      <SeriesCard
+        key={i}
+        title={entry.title}
+        entry={entry}
+        img={entry.body}
+        navigation={this.props.navigation}
+      />
       // <TouchableHighlight
       //   key={i}
       //   underlayColor="rgba(0,0,0,.1)"
