@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Image, View, TouchableHighlight } from "react-native";
-import { Content, Card, CardItem, Text, Body, Left, Icon } from "native-base";
+import { Button, View, TouchableHighlight } from "react-native";
+import { Content, Card, CardItem, Text, Body, Left } from "native-base";
 import parseImage from "./ParseImage";
 
 export default class SeriesCard extends React.Component {
@@ -13,9 +13,7 @@ export default class SeriesCard extends React.Component {
   render() {
     const img = parseImage(this.props.img);
     const title = this.props.title.split("//")[0];
-    let items = this.props.title.split("//")[1];
     const buttons = [];
-    console.log(this.props.entries);
     for (let i = this.props.entries.length - 1; i >= 0; i--) {
       const btnTitle = "Part " + (this.props.entries.length - i);
       buttons.push(
@@ -26,22 +24,6 @@ export default class SeriesCard extends React.Component {
         />
       );
     }
-
-    // if (items) {
-    //   items = parseInt(items.split(" ")[2], 10);
-    //   for (let i = 0; i < items; i++) {
-    //     const btnTitle = "Part " + (i + 1);
-    //     buttons.push(
-    //       <Button
-    //         key={i}
-    //         onPress={() =>
-    //           this._showEntryDetails(this.props.entries[items - i])
-    //         }
-    //         title={btnTitle}
-    //       />
-    //     );
-    //   }
-    // }
 
     return (
       <Content>
