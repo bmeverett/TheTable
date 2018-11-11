@@ -13,22 +13,35 @@ export default class SeriesCard extends React.Component {
   render() {
     const img = parseImage(this.props.img);
     const title = this.props.title.split("//")[0];
-    var items = this.props.title.split("//")[1];
-    var buttons = [];
-
-    if (items) {
-      items = parseInt(items.split(" ")[2], 10);
-      for (var i = 0; i < items; i++) {
-        const btnTitle = "Part " + (i + 1);
-        buttons.push(
-          <Button
-            key={i}
-            onPress={() => this._showEntryDetails(this.props.entry)}
-            title={btnTitle}
-          />
-        );
-      }
+    let items = this.props.title.split("//")[1];
+    const buttons = [];
+    console.log(this.props.entries);
+    for (let i = this.props.entries.length - 1; i >= 0; i--) {
+      const btnTitle = "Part " + (this.props.entries.length - i);
+      buttons.push(
+        <Button
+          key={i}
+          onPress={() => this._showEntryDetails(this.props.entries[i])}
+          title={btnTitle}
+        />
+      );
     }
+
+    // if (items) {
+    //   items = parseInt(items.split(" ")[2], 10);
+    //   for (let i = 0; i < items; i++) {
+    //     const btnTitle = "Part " + (i + 1);
+    //     buttons.push(
+    //       <Button
+    //         key={i}
+    //         onPress={() =>
+    //           this._showEntryDetails(this.props.entries[items - i])
+    //         }
+    //         title={btnTitle}
+    //       />
+    //     );
+    //   }
+    // }
 
     return (
       <Content>
@@ -42,7 +55,7 @@ export default class SeriesCard extends React.Component {
             <View style={{ flex: 1 }}>
               <TouchableHighlight
                 onPress={() => {
-                  this._showEntryDetails(this.props.img);
+                  this._showEntryDetails(this.props.entry);
                 }}
               >
                 <View style={{ flex: 1, height: 200, width: null }}>{img}</View>

@@ -2,19 +2,12 @@ import React from "react";
 import {
   Alert,
   ScrollView,
-  Button,
   StyleSheet,
-  Text,
-  TouchableHighlight,
   View,
-  Image,
   RefreshControl,
   SafeAreaView
 } from "react-native";
 import Api from "../Api/RssFeedApi";
-import EntryDetail from "../EntryDetail";
-import Highlighter from "react-native-highlight-words";
-import LinearGradient from "react-native-linear-gradient";
 import SeriesCard from "../SeriesCard";
 
 const styles = StyleSheet.create({
@@ -72,12 +65,11 @@ export default class HomeTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feeds: [],
+      feeds: {},
       refreshing: false,
       imageSrc: "",
       tonight: null
     };
-    this.buttonPress = this.buttonPress.bind(this);
   }
   componentDidMount() {
     this.loadEntries();
@@ -97,13 +89,13 @@ export default class HomeTab extends React.Component {
     Api.fetchRss(url)
       .then(res => {
         // if (res.responseStatus == 200) {
-        const entries = res.items;
+        const entries = res;
         // const filterEnts = entries.filter(
         //   x => new Date(x.publishOn).getMonth() === new Date().getMonth()
         // );
         // clear the entries to be able to reload them
-        this.setState({ feeds: [] });
-        this.setState({ feeds: this.state.feeds.concat(entries) });
+        this.setState({ feeds: {} });
+        this.setState({ feeds: entries });
       })
       .catch(error => console.log(error));
   }
@@ -114,58 +106,16 @@ export default class HomeTab extends React.Component {
     });
   }
   _renderEntries(entry, i) {
-    if (i === 0) {
-      this.state.tonight = entry;
-      const dte = new Date(entry.publishOn);
-      if (dte.getDate() === new Date().getDate()) {
-        return null;
-      }
-    }
-
-    if (
-      this.state.feeds[i - 1] &&
-      this.state.feeds[i - 1].title.split("//")[0] ===
-        entry.title.split("//")[0]
-    ) {
-      return null;
-    }
     return (
       <SeriesCard
         key={i}
-        title={entry.title}
-        entry={entry}
-        img={entry.body}
+        title={this.state.feeds[entry][0].title}
+        entry={this.state.feeds[entry][0]}
+        entries={this.state.feeds[entry]}
+        img={this.state.feeds[entry][0].body}
         navigation={this.props.navigation}
       />
-      // <TouchableHighlight
-      //   key={i}
-      //   underlayColor="rgba(0,0,0,.1)"
-      //   onPress={() => {
-      //     this._showEntryDetails(entry);
-      //   }}
-      // >
-      //   <View style={styles.wrapper}>
-      //     <View style={styles.header}>
-      //       <Highlighter
-      //         highlightStyle={{ color: "#E5D767" }}
-      //         searchWords={["//", "/ /"]}
-      //         textToHighlight={entry.title}
-      //         style={styles.title}
-      //       />
-      //       <Text style={styles.description}>
-      //         {new Date(entry.publishOn).toDateString()}
-      //       </Text>
-      //     </View>
-      //   </View>
-      // </TouchableHighlight>
     );
-  }
-  buttonPress() {
-    if (this.state.tonight) {
-      this._showEntryDetails(this.state.tonight);
-    } else {
-      Alert.alert("No items are loaded");
-    }
   }
   render() {
     return (
@@ -182,7 +132,9 @@ export default class HomeTab extends React.Component {
                 />
               }
             >
-              {this.state.feeds.map((feed, i) => this._renderEntries(feed, i))}
+              {Object.keys(this.state.feeds).map((feed, i) =>
+                this._renderEntries(feed, i)
+              )}
             </ScrollView>
           </View>
         </View>
