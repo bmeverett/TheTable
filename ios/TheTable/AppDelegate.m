@@ -62,27 +62,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
   NSString *fcmToken = [FIRMessaging messaging].FCMToken;
   NSLog(@"FCM registration token: %@", fcmToken);
-  
   return YES;
 }
 
-// [START receive_message]
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-  // If you are receiving a notification message while your app is in the background,
-  // this callback will not be fired till the user taps on the notification launching the application.
-  // TODO: Handle data of notification
-  
-  // With swizzling disabled you must let Messaging know about the message, for Analytics
-  [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-  
-  // Print message ID.
-  if (userInfo[kGCMMessageIDKey]) {
-    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-  }
-  
-  // Print full message.
-  NSLog(@"%@", userInfo);
-}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -107,11 +89,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 // [START ios_10_message_handling]
 // Receive displayed notifications for iOS 10 devices.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 // Handle incoming notification messages while app is in the foreground.
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-       willPresentNotification:(UNNotification *)notification
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
   NSDictionary *userInfo = notification.request.content.userInfo;
   
   // With swizzling disabled you must let Messaging know about the message, for Analytics
@@ -131,12 +110,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 // Handle notification messages after display notification is tapped by the user.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-#if defined(__IPHONE_11_0)
-         withCompletionHandler:(void(^)(void))completionHandler {
-#else
-withCompletionHandler:(void(^)())completionHandler {
-#endif
+didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler {
   NSDictionary *userInfo = response.notification.request.content.userInfo;
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
@@ -147,7 +121,7 @@ withCompletionHandler:(void(^)())completionHandler {
   
   completionHandler();
 }
-#endif
+
   // [END ios_10_message_handling]
   
   // [START refresh_token]

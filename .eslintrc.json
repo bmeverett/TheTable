@@ -21,6 +21,7 @@
     "constructor-super": "warn",
     "valid-typeof": "warn",
     "comma-dangle": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "arrow-parens": "off"
   }
 }
