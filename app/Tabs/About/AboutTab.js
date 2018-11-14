@@ -14,6 +14,7 @@ export default class AboutTab extends React.Component {
         <Who style={{ flex: 1 }} />
         <Where />
         <Times />
+        <View style={{ height: 20 }} />
         <Button
           onPress={() => {
             this.props.navigation.navigate("Privacy");
