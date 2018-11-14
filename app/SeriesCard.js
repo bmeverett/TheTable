@@ -30,7 +30,7 @@ export default class SeriesCard extends React.Component {
         <Card>
           <CardItem>
             <Body>
-              <Text>{title}</Text>
+              <Text style={{ fontWeight: "bold", fontSize: 20 }}>{title}</Text>
             </Body>
           </CardItem>
           <CardItem cardBody>
