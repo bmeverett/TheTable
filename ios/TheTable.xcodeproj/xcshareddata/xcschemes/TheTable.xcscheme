@@ -48,24 +48,10 @@
                ReferencedContainer = "container:TheTable.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2E677C07214D675C00326A21"
-               BuildableName = "TheTableUITests.xctest"
-               BlueprintName = "TheTableUITests"
-               ReferencedContainer = "container:TheTable.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -77,16 +63,6 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "TheTableTests.xctest"
                BlueprintName = "TheTableTests"
-               ReferencedContainer = "container:TheTable.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2E677C07214D675C00326A21"
-               BuildableName = "TheTableUITests.xctest"
-               BlueprintName = "TheTableUITests"
                ReferencedContainer = "container:TheTable.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -104,7 +80,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
