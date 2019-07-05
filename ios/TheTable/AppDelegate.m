@@ -1,14 +1,16 @@
 /**
- * Copyright (c) 2015-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 #import "AppDelegate.h"
+
+#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <AVFoundation/AVFoundation.h>
+
 @import UserNotifications;
 @import Firebase;
 
@@ -21,24 +23,11 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
-#if DEBUG
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-#else
-  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
-  
-  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-  NSError *setCategroyError = nil;
-  [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategroyError];
-  
-  
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"TheTable"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
-  
-  
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"TheTable"
+                                            initialProperties:nil];
+
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -62,9 +51,19 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
   NSString *fcmToken = [FIRMessaging messaging].FCMToken;
   NSLog(@"FCM registration token: %@", fcmToken);
+  
+  
   return YES;
 }
 
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+#if DEBUG
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -122,39 +121,43 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletion
   completionHandler();
 }
 
-  // [END ios_10_message_handling]
+// [END ios_10_message_handling]
+
+// [START refresh_token]
+- (void)messaging:(nonnull FIRMessaging *)messaging didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
+  // Note that this callback will be fired everytime a new token is generated, including the first
+  // time. So if you need to retrieve the token as soon as it is available this is where that
+  // should be done.
+  NSLog(@"FCM registration token: %@", fcmToken);
   
-  // [START refresh_token]
-  - (void)messaging:(nonnull FIRMessaging *)messaging didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
-    // Note that this callback will be fired everytime a new token is generated, including the first
-    // time. So if you need to retrieve the token as soon as it is available this is where that
-    // should be done.
-    NSLog(@"FCM registration token: %@", fcmToken);
-    
-    // TODO: If necessary send token to application server.
-  }
-  // [END refresh_token]
+  // TODO: If necessary send token to application server.
+}
+// [END refresh_token]
+
+// [START ios_10_data_message]
+// Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+// To enable direct data messages, you can set [Messaging messaging].shouldEstablishDirectChannel to YES.
+- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+  NSLog(@"Received data message: %@", remoteMessage.appData);
+}
+// [END ios_10_data_message]
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Unable to register for remote notifications: %@", error);
+}
+
+// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
+// the FCM registration token.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  NSLog(@"APNs device token retrieved: %@", deviceToken);
   
-  // [START ios_10_data_message]
-  // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-  // To enable direct data messages, you can set [Messaging messaging].shouldEstablishDirectChannel to YES.
-  - (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
-    NSLog(@"Received data message: %@", remoteMessage.appData);
-  }
-  // [END ios_10_data_message]
-  
-  - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Unable to register for remote notifications: %@", error);
-  }
-  
-  // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
-  // If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
-  // the FCM registration token.
-  - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"APNs device token retrieved: %@", deviceToken);
-    
-    // With swizzling disabled you must set the APNs device token here.
-     [FIRMessaging messaging].APNSToken = deviceToken;
-  }
+  // With swizzling disabled you must set the APNs device token here.
+  [FIRMessaging messaging].APNSToken = deviceToken;
+}
+
+-(void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(nonnull NSString *)fcmToken {
+  NSLog(@"Device token retrieved: %@", fcmToken);
+}
 
 @end
