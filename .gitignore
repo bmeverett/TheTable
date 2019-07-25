@@ -46,7 +46,6 @@ android/app/libs
 android/keystores/debug.keystore
 
 config.js
-=======
 *.keystore
 *.zip
 # fastlane
@@ -64,3 +63,4 @@ config.js
 *.jsbundle
 
 android/app/release/
+/ios/Pods/

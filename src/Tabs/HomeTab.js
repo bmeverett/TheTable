@@ -74,9 +74,6 @@ export default class HomeTab extends React.Component {
   componentDidMount() {
     this.loadEntries();
   }
-  componentWillReceiveProps() {
-    this.loadEntries();
-  }
 
   _onRefresh() {
     this.setState({ refreshing: true });
