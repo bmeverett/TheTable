@@ -1,5 +1,5 @@
-import React from "react";
-import { WebView } from "react-native";
+import React from 'react';
+import {WebView} from 'react-native';
 
 export default class Privacy extends React.Component {
   render() {
@@ -7,7 +7,7 @@ export default class Privacy extends React.Component {
       <WebView
         source={{
           uri:
-            "https://www.freeprivacypolicy.com/privacy/view/517634f4eafa7be395a286cd996e7fd1"
+            'https://www.freeprivacypolicy.com/privacy/view/517634f4eafa7be395a286cd996e7fd1',
         }}
       />
     );

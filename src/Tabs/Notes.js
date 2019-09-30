@@ -1,5 +1,11 @@
 import React from 'react';
-import ReactNative, { TextInput, View, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
+import ReactNative, {
+  TextInput,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
+} from 'react-native';
 import Api from '../Api/RssFeedApi';
 import parseImage from '.././ParseImage';
 
@@ -10,57 +16,66 @@ export default class Notes extends React.Component {
       text: this.props.text,
       subject: this.props.subject,
       imgSource: null,
-      textObj: null };
+      textObj: null,
+    };
   }
 
   componentDidMount() {
-    const url = 'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
-    Api.fetchRss(url).then((res) => {
+    const url =
+      'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
+    Api.fetchRss(url)
+      .then(res => {
         // if (res.responseStatus == 200) {
-      const firstEntry = res.items[0];
-      const img = parseImage(firstEntry.body);
-      this.setState({ imgSource: img });
-    }).catch(error => console.log(error));
+        const firstEntry = res.items[0];
+        const img = parseImage(firstEntry.body);
+        this.setState({imgSource: img});
+      })
+      .catch(error => console.log(error));
   }
   inputFocused(refName) {
     setTimeout(() => {
       const scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
-      ReactNative.findNodeHandle(this.refs[refName]),
-      0, // additionalOffset
-      true
-    );
+        ReactNative.findNodeHandle(this.refs[refName]),
+        0, // additionalOffset
+        true,
+      );
     }, 50);
   }
   render() {
     return (
-      <ScrollView ref="scrollView" contentContainerStyle={{ flex: 1 }} >
+      <ScrollView ref="scrollView" contentContainerStyle={{flex: 1}}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={{ flex: 1 }} >
+          <View style={{flex: 1}}>
             {this.state.imgSource}
             <TextInput
               placeholder="Subject"
-              style={{ margin: 5, height: 70, fontSize: 14 }}
-              onChangeText={(text) => {
-                this.props.navigation.setParams({ subject: text });
+              style={{margin: 5, height: 70, fontSize: 14}}
+              onChangeText={text => {
+                this.props.navigation.setParams({subject: text});
               }}
               value={this.state.subject}
               editable
             />
             <TextInput
-            // hack this for now, can fix with propper refs later
+              // hack this for now, can fix with propper refs later
               ref="notes"
               onFocus={this.inputFocused.bind(this, 'notes')}
               placeholder="Notes"
-              style={{ margin: 5, flex: 1, fontSize: 14, marginBottom: 100, marginRight: 50 }}
-              onChangeText={(text) => {
-                this.props.navigation.setParams({ text });
+              style={{
+                margin: 5,
+                flex: 1,
+                fontSize: 14,
+                marginBottom: 100,
+                marginRight: 50,
+              }}
+              onChangeText={text => {
+                this.props.navigation.setParams({text});
               }}
               value={this.props.text}
               editable
               multiline
             />
-
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>
