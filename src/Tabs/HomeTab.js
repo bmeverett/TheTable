@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
-  Alert,
   ScrollView,
   StyleSheet,
   View,
   RefreshControl,
-  SafeAreaView
-} from "react-native";
-import Api from "../Api/RssFeedApi";
-import SeriesCard from "../SeriesCard";
+  SafeAreaView,
+} from 'react-native';
+import Api from '../Api/RssFeedApi';
+import SeriesCard from '../SeriesCard';
 
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    paddingTop: 10
+    paddingTop: 10,
   },
   wrapper: {
     paddingTop: 10,
@@ -21,44 +20,44 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: 1,
-    borderColor: "black", // '#E5D767',
-    flex: 1
+    borderColor: 'black', // '#E5D767',
+    flex: 1,
   },
   title: {
     paddingTop: 2,
     paddingBottom: 3,
     paddingRight: 15,
-    fontWeight: "bold",
-    fontSize: 16
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   description: {
-    color: "black", // '#B4AEAE',
+    color: 'black', // '#B4AEAE',
     fontSize: 12,
-    marginBottom: 5
+    marginBottom: 5,
   },
   smallText: {
     fontSize: 11,
-    textAlign: "right",
-    color: "#B4AEAE"
+    textAlign: 'right',
+    color: '#B4AEAE',
   },
   container: {
     flex: 1,
-    flexDirection: "column",
-    backgroundColor: "white"
+    flexDirection: 'column',
+    backgroundColor: 'white',
   },
   gradient: {
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 35,
-    marginHorizontal: 50
+    marginHorizontal: 50,
   },
   text: {
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
-    color: "#ffffff",
-    backgroundColor: "transparent",
-    fontSize: 20
-  }
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+    fontSize: 20,
+  },
 });
 
 export default class HomeTab extends React.Component {
@@ -67,8 +66,8 @@ export default class HomeTab extends React.Component {
     this.state = {
       feeds: {},
       refreshing: false,
-      imageSrc: "",
-      tonight: null
+      imageSrc: '',
+      tonight: null,
     };
   }
   componentDidMount() {
@@ -76,13 +75,13 @@ export default class HomeTab extends React.Component {
   }
 
   _onRefresh() {
-    this.setState({ refreshing: true });
+    this.setState({refreshing: true});
     this.loadEntries();
-    this.setState({ refreshing: false });
+    this.setState({refreshing: false});
   }
   loadEntries() {
     const url =
-      "https://www.thetableinbetween.org/weekly-topic?format=json-pretty";
+      'https://www.thetableinbetween.org/weekly-topic?format=json-pretty';
     Api.fetchRss(url)
       .then(res => {
         // if (res.responseStatus == 200) {
@@ -91,15 +90,15 @@ export default class HomeTab extends React.Component {
         //   x => new Date(x.publishOn).getMonth() === new Date().getMonth()
         // );
         // clear the entries to be able to reload them
-        this.setState({ feeds: {} });
-        this.setState({ feeds: entries });
+        this.setState({feeds: {}});
+        this.setState({feeds: entries});
       })
       .catch(error => console.log(error));
   }
   _showEntryDetails(entry) {
-    this.props.navigation.navigate("EntryDetail", {
+    this.props.navigation.navigate('EntryDetail', {
       title: entry.title,
-      entry: entry
+      entry: entry,
     });
   }
   _renderEntries(entry, i) {
@@ -116,9 +115,9 @@ export default class HomeTab extends React.Component {
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-        <View style={{ flex: 1 }}>
-          <View style={{ flex: 1, paddingTop: 10 }}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+        <View style={{flex: 1}}>
+          <View style={{flex: 1, paddingTop: 10}}>
             <ScrollView
               style={styles.scrollView}
               automaticallyAdjustContentInsets={false}
@@ -127,10 +126,9 @@ export default class HomeTab extends React.Component {
                   refreshing={this.state.refreshing}
                   onRefresh={this._onRefresh.bind(this)}
                 />
-              }
-            >
+              }>
               {Object.keys(this.state.feeds).map((feed, i) =>
-                this._renderEntries(feed, i)
+                this._renderEntries(feed, i),
               )}
             </ScrollView>
           </View>
