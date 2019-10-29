@@ -19,4 +19,4 @@ cd TheTable
 yarn install
 ```
 
-Then you can run `react-native run-ios` or `react-native run-android` 
+Then you can run `react-native run-ios` or `react-native run-android`
